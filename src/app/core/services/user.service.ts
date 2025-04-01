@@ -17,7 +17,7 @@ export class UserService extends ApiService {
   }
 
   getUserInfo(): Observable<UserModel> {
-    return this.get<UserModel>(['Auth']).pipe(
+    return this.get<UserModel>(['auth', 'me']).pipe(
       map((user: UserModel) => new UserModel(user)),
       tap((user: UserModel) => this.currentUser$.next(new UserModel(user))),
     );
