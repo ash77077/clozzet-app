@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {RouterOutlet} from "@angular/router";
-import {AppSidebarComponent} from "../../../../layout/component/app.sidebar";
-import {AppTopbar} from "../../../../app.topbar";
+import {AppSidebarComponent} from "@layout/component/app.sidebar";
+import {AppTopbar} from "@layout/component/app.topbar";
 @Component({
   selector: 'app-layout',
   imports: [
