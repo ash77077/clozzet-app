@@ -1,0 +1,16 @@
+export enum ENavBar {
+    DASHBOARD = 'dashboard',
+    NEWS_AND_BANNERS = 'news-and-banners',
+    USERS = 'users',
+    DEALERS = 'dealers',
+    POS = 'pos',
+    TOP_UP = 'top-up',
+    FUTURE_TOP_UP = 'future-top-up',
+    RECURRING_TOP_UP = 'recurring-top-up',
+    BULK_TOP_UP = 'bulk-top-up',
+    CANCEL_TRANSACTION = 'cancel-transaction',
+    REPORTS = 'reports',
+    PROVIDERS = 'providers',
+    FINANCIAL_TRANSACTION = 'financial-transaction',
+    PRODUCTS = 'products',
+}

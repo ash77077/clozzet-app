@@ -1,0 +1,16 @@
+<label [for]="label" class="label" [class]="labelClass">{{label}}</label><span class="err-msg-text fz-16" *ngIf="isRequired">*</span>
+<div class="input-with-https-link">
+    <div class="https-link">https://</div>
+    <input
+            class="e-input"
+            dir="ltr"
+            [ngClass]="inputClass"
+            [class.input-error]="control.invalid && control.touched"
+            [disabled]="disabled"
+            [formControl]="control"
+            [placeholder]="placeholder"
+            [id]="label"
+    >
+</div>
+
+<div *ngIf="control.invalid && control.touched" class="err-msg-text mt-8">Something went wrong</div>

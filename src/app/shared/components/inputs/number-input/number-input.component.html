@@ -1,0 +1,17 @@
+<div [ngClass]="class">
+    <label [for]="label" class="label" [class]="labelClass">{{label}}</label>
+    <span class="err-msg-text fz-16" *ngIf="isRequired && showRequiredSign">*</span>
+    <div class="num-box">
+<!--        <ejs-numerictextbox-->
+<!--                [format]="format"-->
+<!--                [class.ejs-input-error]="control.invalid && control.touched"-->
+<!--                class="input-text-align-right"-->
+<!--                [showSpinButton]='showSpinButton'-->
+<!--                [formControl]="control"-->
+<!--                [min]="minAllowedValue"-->
+<!--                (input)="numberValidator($event)"-->
+<!--                (keydown)="disableMinusSymbol($event)"-->
+<!--                [max]="maxAllowedValue"-->
+<!--        ></ejs-numerictextbox>-->
+    </div>
+</div>

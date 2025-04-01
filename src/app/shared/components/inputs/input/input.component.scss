@@ -1,0 +1,41 @@
+:host {
+  width: 100%;
+}
+
+.label {
+  color: var(--body-text-body-color);
+  font-family: Rubik, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+  font-size: 16px;
+}
+
+.input-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 1px #dc2626 !important;
+
+  &:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 1px #dc2626 !important;
+  }
+}
+
+.e-input {
+  margin-top: 8px !important;
+  height: 3rem !important;
+  font-size: 20px;
+  padding: 0 8px !important;
+}
+
+.fz-20 {
+  font-size: 20px !important;
+}
+
+.h-38 {
+  height: 38px !important;
+}
+
+.min-h-38 {
+  min-height: 38px !important;
+}

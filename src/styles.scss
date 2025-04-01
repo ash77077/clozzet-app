@@ -3,3 +3,9 @@
 @use './assets/layout/layout.scss';
 @use 'primeicons/primeicons.css';
 @use './assets/demo/demo.scss';
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}

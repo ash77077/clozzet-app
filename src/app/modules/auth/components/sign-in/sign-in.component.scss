@@ -1,0 +1,33 @@
+:host {
+  width: 100%;
+}
+
+.main-sign-in {
+  width: 42%;
+  margin: 0 auto;
+
+  .header {
+    color: var(--body-text-body-color);
+    font-size: 32px;
+    font-family: Rubik, sans-serif;
+    font-weight: 500;
+    line-height: 120%;
+  }
+
+  .form {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .support {
+    margin-top: 31px;
+    display: flex;
+    justify-content: right;
+  }
+}
+
+.mobile-sign-in {
+  width: 100%;
+}

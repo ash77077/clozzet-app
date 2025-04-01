@@ -1,0 +1,37 @@
+:host {
+  width: 100%;
+}
+
+.e-input {
+  margin-top: 0 !important;
+  height: 38px !important;
+  padding: 0 8px !important;
+}
+
+.e-numeric {
+  height: 38px !important;
+}
+
+.ejs-input-error {
+  .e-numerictextbox {
+    border-width: 1px !important;
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 1px #dc2626 !important;
+    padding: 0 8px !important;
+
+    &:focus {
+      border-width: 2px;
+      border-color: #dc2626 !important;
+      box-shadow: 0 0 0 1px #dc2626 !important;
+    }
+  }
+}
+
+.input-text-align-right {
+  text-align: right;
+}
+
+.control-label {
+  padding: 24px 0 10px 0;
+  font-size: 12px;
+}

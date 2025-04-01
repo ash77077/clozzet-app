@@ -1,0 +1,60 @@
+:host {
+  width: 100%;
+}
+
+.label {
+  color: var(--body-text-body-color);
+  font-family: Rubik, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.input-error {
+  border-color: #dc2626;
+  box-shadow: 0 0 0 1px #dc2626;
+
+  &:focus {
+    border-color: #dc2626 !important;
+    box-shadow: 0 0 0 1px #dc2626 !important;
+  }
+}
+
+.e-input {
+  margin-top: 8px !important;
+  height: 3rem !important;
+  font-size: 20px;
+  padding: 0 8px !important;
+
+}
+
+.fz-20 {
+  font-size: 20px !important;
+}
+
+.h-38 {
+  height: 38px !important;
+}
+
+.min-h-38 {
+  min-height: 38px !important;
+}
+
+.input-with-currency {
+  position: relative;
+
+  input {
+    padding-left: 32px;
+    font-size: 16px;
+  }
+
+  &::after {
+    content: "₪";
+    font-size: 20px;
+    position: absolute;
+    top: calc(50% + 3px);
+    left: 12px;
+    transform: translateY(-50%);
+    color: var(--gray-600);
+  }
+}

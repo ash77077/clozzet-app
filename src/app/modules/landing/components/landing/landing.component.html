@@ -1,0 +1,17 @@
+<div class="tiles">
+  @for (item of catalogList; track item.name; let i = $index) {
+    <article class="style{{ i + 1 }}">
+      <span class="image">
+        <img src="assets/images/pic0{{ i + 1 }}.png" alt="" />
+      </span>
+      <div class="txt-info">
+        <h2>{{ item.name }}</h2>
+        <div class="content">
+          <!--          <p>-->
+          <!--            {{ item.description }}-->
+          <!--          </p>-->
+        </div>
+      </div>
+    </article>
+  }
+</div>

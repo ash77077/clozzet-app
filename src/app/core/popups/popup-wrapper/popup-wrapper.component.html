@@ -1,0 +1,54 @@
+<div *ngIf="enableHeader" class="modal-header" [ngClass]="headerClass">
+    <h5 *ngIf="enableTitle" class="modal-title" [ngClass]="applyTitleClass">{{title}}</h5>
+    <span *ngIf="enableXButton" [ngClass]="xButtonClass" (click)="closePopup.emit()"
+          class="modal-close" data-dismiss="modal">
+<!--	    <mat-icon fontIcon="close"></mat-icon>-->
+    </span>
+</div>
+
+<div class="modal-body" [ngClass]="bodyClass" *ngIf="enableBody">
+    <ng-content></ng-content>
+</div>
+
+<div *ngIf="enableApplyButton && enableCloseButton"
+     class="modal-footer"
+     [ngClass]="footerClass"
+>
+    <ng-container *ngIf="!revert; else reverted">
+        <button type="button" (click)="closePopup.emit()" class="modal-footer-btn btn-close"
+                [ngClass]="closeButtonClass">
+            {{ closeButtonTitle }}
+        </button>
+        <button type="button" (click)="apply.emit()" [disabled]="disableApplyButton" class="modal-footer-btn"
+                [ngClass]="applyButtonClass">
+            {{ applyButtonTitle }}
+        </button>
+
+    </ng-container>
+
+    <ng-template #reverted>
+        <button type="button" (click)="apply.emit()" [disabled]="disableApplyButton" class="modal-footer-btn"
+                [ngClass]="applyButtonClass">
+            {{ applyButtonTitle }}
+        </button>
+        <button type="button" (click)="closePopup.emit()" class="modal-footer-btn btn-close"
+                [ngClass]="closeButtonClass">
+            {{ closeButtonTitle }}
+        </button>
+    </ng-template>
+</div>
+
+<div *ngIf="enableApplyButton && !enableCloseButton" class="modal-footer" [ngClass]="footerClass">
+    <button type="button" (click)="apply.emit()" [disabled]="disableApplyButton" class="modal-footer-btn"
+            [ngClass]="applyButtonClass">
+        {{ applyButtonTitle }}
+    </button>
+</div>
+
+<div *ngIf="enableCloseButton && !enableApplyButton" class="modal-footer" [ngClass]="footerClass">
+    <button type="button" (click)="closePopup.emit()" class="modal-footer-btn" [ngClass]="closeButtonClass">
+        {{ closeButtonTitle }}
+    </button>
+</div>
+
+<ng-content select="[footer]"></ng-content>

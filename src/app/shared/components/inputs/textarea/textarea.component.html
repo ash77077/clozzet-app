@@ -1,0 +1,11 @@
+<label [for]="label" class="label" [class]="labelClass">{{label}}</label><span class="err-msg-text fz-16" *ngIf="isRequired">*</span>
+<textarea
+        class="e-input textarea-c"
+        [ngClass]="textareaInputClass"
+        [class.ejs-input-error]="control.invalid && control.touched"
+        #textarea
+        [formControl]="control"
+        [disabled]="disabled"
+        [maxlength]="maxlength"
+        [rows]="rows"
+></textarea>
