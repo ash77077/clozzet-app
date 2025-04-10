@@ -1,0 +1,8 @@
+<p-fileupload
+		(onSelect)="uploadFile($event)"
+		[showUploadButton]="false"
+		[multiple]="false" accept="image/*" maxFileSize="1000000" mode="advanced">
+	<ng-template #empty>
+		<div>Drag and drop files to here to upload.</div>
+	</ng-template>
+</p-fileupload>

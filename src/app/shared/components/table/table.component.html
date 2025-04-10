@@ -1,0 +1,91 @@
+@if (showToolBar) {
+	<p-toolbar styleClass="mb-6">
+		<ng-template #start>
+			<p-button
+					severity="secondary"
+					label="Delete"
+					icon="pi pi-trash"
+					outlined
+					(onClick)="deleteSelectedProducts()"
+			/>
+		</ng-template>
+
+		<ng-template #end>
+			<p-button label="Export" icon="pi pi-upload" severity="secondary" (onClick)="dt.exportCSV()"/>
+		</ng-template>
+	</p-toolbar>
+}
+
+<p-table
+  #dt
+	[value]="data"
+	[tableStyle]="{ 'min-width': '50rem' }"
+	[paginator]="paginator"
+	[rows]="rowsCount"
+	[columns]="columns"
+	[reorderableColumns]="allowReorder"
+	(onRowReorder)="onDropRow($event)"
+>
+	<ng-template pTemplate="header">
+		<tr>
+			@if (allowReorder) {
+				<th style="width:3rem"></th>
+			}
+			@if (allowCheckbox) {
+				<th style="width: 3rem">
+					<p-tableHeaderCheckbox/>
+				</th>
+			}
+			@for (column of columns; track column.id) {
+				<th>{{ column.label }}</th>
+			}
+			@if (actionColumn) {
+				<th></th>
+			}
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="body" let-item let-index="rowIndex">
+		<tr [pReorderableRow]="allowReorder && index">
+			@if (allowReorder) {
+				<td>
+					<span class="pi pi-bars" pReorderableRowHandle></span>
+				</td>
+			}
+			@if (allowCheckbox) {
+				<td style="width: 3rem">
+					<p-tableCheckbox [value]="item"/>
+				</td>
+			}
+			@for (column of columns; track column.id) {
+				@if (column.type === 'image') {
+					<td>
+						<img
+								[src]="item[column.field] ?? './assets/images/no-image.png'"
+								[alt]="column.field"
+								style="max-width: 64px; max-height: 30px"
+								class="rounded">
+					</td>
+				} @else if (column?.boolValues) {
+					<td>
+						<p-tag
+								[value]=" item[column.field] ? column?.boolValues!.trueVal : column?.boolValues!.falseVal"
+								[severity]="item[column.field] ? 'success' : 'warn'"
+						></p-tag>
+					</td>
+				} @else {
+					<td>{{ item[column.field] }}</td>
+				}
+			}
+			@if (actionColumn) {
+				<td class="action-column">
+					<ng-container *ngTemplateOutlet="actionColumn; context: {dataItem: item} "></ng-container>
+				</td>
+			}
+		</tr>
+	</ng-template>
+	<ng-template pTemplate="emptymessage">
+		<tr>
+			<td colspan="5">No data found.</td>
+		</tr>
+	</ng-template>
+</p-table>

@@ -1,8 +1,8 @@
 import { Routes } from '@angular/router';
-import { AppLayoutComponent } from './app/layout/component/app.layout';
-import { Notfound } from './app/pages/notfound/notfound';
-import { allRoles } from './app/core/constants';
-import { authGuard } from './app/core/guards/auth.guard';
+import { AppLayoutComponent } from '@layout/component/app.layout';
+import { Notfound } from '@pages/notfound/notfound';
+import { allRoles } from '@core/constants';
+import { authGuard } from '@core/guards/auth.guard';
 
 export const appRoutes: Routes = [
   {
@@ -23,4 +23,5 @@ export const appRoutes: Routes = [
     data: { roles: allRoles },
   },
   { path: 'notfound', component: Notfound },
+  { path: '**', redirectTo: 'landing' },
 ];

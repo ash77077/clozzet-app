@@ -1,17 +1,146 @@
-<div class="tiles">
-  @for (item of catalogList; track item.name; let i = $index) {
-    <article class="style{{ i + 1 }}">
-      <span class="image">
-        <img src="assets/images/pic0{{ i + 1 }}.png" alt="" />
-      </span>
-      <div class="txt-info">
-        <h2>{{ item.name }}</h2>
-        <div class="content">
-          <!--          <p>-->
-          <!--            {{ item.description }}-->
-          <!--          </p>-->
-        </div>
-      </div>
-    </article>
-  }
+<div class="flex w-full items-center bg-white dark:bg-dark px-10">
+	<div class="container mx-auto">
+		<div class="relative -mx-4 flex items-center justify-between">
+			<div class="w-60 max-w-full px-4">
+				<img
+						src="assets/images/logo-black.png"
+						alt="logo"
+						class="dark:hidden"
+				/>
+				<img
+						src="assets/images/logo-white.png"
+						alt="logo"
+						class="hidden dark:block"
+				/>
+			</div>
+			<div class="flex w-full items-center justify-between px-4">
+				<div>
+					<button
+							id="navbarToggler"
+							class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+					>
+                <span
+		                class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+                ></span>
+						<span
+								class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+						></span>
+						<span
+								class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
+						></span>
+					</button>
+					<nav
+							id="navbarCollapse"
+							class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none dark:bg-dark-2 lg:dark:bg-transparent"
+					>
+						<ul class="block lg:flex">
+							<li>
+								<a
+										href="javascript:void(0)"
+										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+								>
+									Home
+								</a>
+							</li>
+							<li>
+								<a
+										href="javascript:void(0)"
+										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+								>
+									Payment
+								</a>
+							</li>
+							<li>
+								<a
+										href="javascript:void(0)"
+										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"
+								>
+									Features
+								</a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+				<div class="hidden justify-end pr-16 sm:flex lg:pr-0">
+					<a
+							href="javascript:void(0)"
+							class="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white"
+					>
+						Login
+					</a>
+					<a
+							href="javascript:void(0)"
+							class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
+					>
+						Sign Up
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
+<div class="landing-slider mt-5 mx-56 border border-gray bg-gray-3 rounded-border">
+	<div class="pt-14">
+		<p-carousel
+				[value]="slider"
+				[numVisible]="1"
+				[numScroll]="1"
+				[circular]="true"
+				orientation="vertical"
+				[responsiveOptions]="responsiveOptions"
+				[showIndicators]="false"
+				[showNavigators]="false"
+				autoplayInterval="3500"
+				verticalViewPortHeight="630px"
+				contentClass="flex items-center"
+		>
+			<ng-template let-product #item>
+				<div class="relative mx-auto">
+					<img
+							[src]="product.img" [alt]="product.name"
+							style="height: 577px; width: 462px;"
+							class="w-full rounded-border"/>
+				</div>
+			</ng-template>
+		</p-carousel>
+	</div>
+	<div class="px-32 text-center flex flex-col items-center justify-center">
+		<h1>Welcome to Clozzet</h1>
+		<h2>Your Partner in Fashion Supply</h2>
+		<div class="text-xl" id=container>
+			At <b>Clozzet</b>, we specialize in high-quality custom clothing for businesses that care about
+			comfort,
+			durability, and brand identity. From tailored uniforms for IT teams to stylish workwear for
+			<div id=flip>
+				<div>
+					<div>for hotel staff</div>
+				</div>
+				<div>
+					<div>supermarket employees</div>
+				</div>
+				<div>
+					<div>even kindergarten kids</div>
+				</div>
+			</div>
+			we’ve got you covered.
+		</div>
+	</div>
+</div>
+
+<div class="mt-5 mx-56 border border-gray bg-gray-3">
+	<div class="tiles">
+		@for (item of catalogList; track item.name; let i = $index) {
+			<article class="style2">
+      <span class="image">
+        <img src="assets/images/pic0{{ i + 1 }}.png" alt=""/>
+      </span>
+				<div class="txt-info">
+					<h2>{{ item.name }}</h2>
+					<div class="content">
+					</div>
+				</div>
+			</article>
+		}
+	</div>
+</div>
+

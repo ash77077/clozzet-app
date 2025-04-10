@@ -1,0 +1,72 @@
+<div class="card">
+	<p-toast/>
+	<p-toolbar styleClass="mb-6">
+		<ng-template #start>
+			<p-button label="New" icon="pi pi-plus" class="mr-2" (onClick)="openNew()"/>
+			<p-button
+					severity="danger" label="Delete" icon="pi pi-trash" outlined (onClick)="deleteSelectedCategory()"
+					[disabled]="!selectedCategory"/>
+		</ng-template>
+
+		<ng-template #end>
+			<p-fileUpload
+					mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" auto customUpload
+					class="mr-2 inline-block" [chooseButtonProps]="{ severity: 'secondary' }"></p-fileUpload>
+			<p-button label="Export" icon="pi pi-upload" severity="secondary" (onClick)="exportCSV()"/>
+		</ng-template>
+	</p-toolbar>
+
+	<app-table
+	[columns]="cols"
+	[data]="categories"
+	[actionColumn]="actionColumn"
+	>
+	</app-table>
+
+	<ng-template #actionColumn let-dataItem="dataItem">
+		<div class="flex align-items-center justify-content-center gap-2">
+			<p-button
+					icon="pi pi-pencil"
+					class="mr-2"
+					[rounded]="true"
+					[outlined]="true"
+					(click)="editProduct(dataItem)"
+			/>
+			<p-button
+					icon="pi pi-trash"
+					severity="danger"
+					[rounded]="true"
+					[outlined]="true"
+					(click)="deleteProduct(dataItem)"
+			/>
+		</div>
+	</ng-template>
+
+	<p-dialog [(visible)]="categoryDialog" [style]="{ width: '450px' }" header="Add Category" [modal]="true">
+		<ng-template #content>
+			<div class="flex flex-col gap-6" [formGroup]="categoryGroup">
+				<app-file-upload
+						[control]="categoryGroup.get('image')"
+				></app-file-upload>
+				<div>
+					<label for="name" class="block font-bold mb-3">Name</label>
+					<input type="text" pInputText id="name" placeholder="Name" formControlName="name" required fluid/>
+					@if (categoryGroup.controls['name'].invalid && !categoryGroup.controls['name'].untouched) {
+						<small class="text-red-500">Name is required.</small>
+					}
+				</div>
+				<div>
+					<label for="active" class="block font-bold mb-3">Active</label>
+					<p-toggleswitch id="active" formControlName="active" />
+				</div>
+			</div>
+		</ng-template>
+
+		<ng-template #footer>
+			<p-button label="Cancel" icon="pi pi-times" text (click)="hideDialog()"/>
+			<p-button label="Save" icon="pi pi-check" (click)="saveCategory()"/>
+		</ng-template>
+	</p-dialog>
+
+	<p-confirmDialog [style]="{ width: '450px' }"></p-confirmDialog>
+</div>

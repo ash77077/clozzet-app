@@ -22,6 +22,12 @@ export const menuItems: MenuItem[] = [
         routerLink: ['/admin/products'],
         roles: allRoles,
       },
+      {
+        label: 'Categories',
+        icon: 'pi pi-fw pi-images',
+        routerLink: ['/admin/categories'],
+        roles: allRoles,
+      },
     ],
   },
   {

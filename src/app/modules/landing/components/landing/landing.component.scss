@@ -9,17 +9,16 @@
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  margin: -2.5em 0 0 -2.5em;
-  padding: 20px 300px 0;
+  gap: 16px;
+  padding: 16px;
+  justify-content: center;
 }
 
 .tiles article {
-  transition:
-    transform 0.5s ease,
-    opacity 0.5s ease;
+  transition: transform 0.5s ease,
+  opacity 0.5s ease;
   position: relative;
-  width: calc(33.33333% - 2.5em);
-  margin: 2.5em 0 0 2.5em;
+  width: calc(33.33333% - 16px);
   cursor: pointer;
 }
 
@@ -39,9 +38,8 @@
 
 .tiles article > .image:before {
   pointer-events: none;
-  transition:
-    background-color 0.5s ease,
-    opacity 0.5s ease;
+  transition: background-color 0.5s ease,
+  opacity 0.5s ease;
   content: '';
   display: block;
   position: absolute;
@@ -79,9 +77,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  transition:
-    background-color 0.5s ease,
-    transform 0.5s ease;
+  transition: background-color 0.5s ease,
+  transform 0.5s ease;
   position: absolute;
   top: 0;
   left: 0;
@@ -111,9 +108,8 @@
 
 .tiles article {
   & > .txt-info .content {
-    transition:
-      max-height 0.5s ease,
-      opacity 0.5s ease;
+    transition: max-height 0.5s ease,
+    opacity 0.5s ease;
     width: 100%;
     max-height: 0;
     line-height: 1.5;
@@ -122,43 +118,19 @@
   }
 }
 
-//.tiles article > .txt-info .content > :last-child {
-//  margin-bottom: 0;
-//}
-
-.tiles article.style1 > .image:before {
-  background-color: #f2849e;
-}
-
 .tiles article.style2 > .image:before {
   background-color: #7ecaf6;
 }
 
-.tiles article.style3 > .image:before {
-  background-color: #7bd0c1;
-}
-
-.tiles article.style4 > .image:before {
-  background-color: #c75b9b;
-}
-
-.tiles article.style5 > .image:before {
-  background-color: #ae85ca;
-}
-
-.tiles article.style6 > .image:before {
-  background-color: #8499e7;
-}
-
 .tiles article:hover {
   & > .image {
-    transform: scale(1.1);
+    transform: scale(1.03);
   }
 }
 
 .tiles article:hover {
   & > .image:before {
-    background-color: #333333;
+    background-color: #081468;
     opacity: 0.35;
   }
 }
@@ -182,41 +154,28 @@ article:hover {
 }
 
 @media screen and (max-width: 1280px) {
-  .tiles {
-    margin: -1.25em 0 0 -1.25em;
+  .tiles article {
+    width: calc(33.33333%);
   }
 
-  .tiles article {
-    width: calc(33.33333% - 1.25em);
-    margin: 1.25em 0 0 1.25em;
+  .tiles {
+    padding: 0;
   }
 }
 
 @media screen and (max-width: 980px) {
-  .tiles {
-    margin: -2.5em 0 0 -2.5em;
-  }
-
   .tiles article {
-    width: calc(50% - 2.5em);
-    margin: 2.5em 0 0 2.5em;
+    width: calc(50%);
   }
 }
 
 @media screen and (max-width: 736px) {
-  .tiles {
-    margin: -1.25em 0 0 -1.25em;
-  }
-
   .tiles article {
-    width: calc(50% - 1.25em);
-    margin: 1.25em 0 0 1.25em;
+    width: calc(100%);
   }
 
-  .tiles article:hover {
-    & > .image {
-      transform: scale(1);
-    }
+  .tiles {
+    padding: 0 150px;
   }
 }
 
@@ -230,3 +189,64 @@ article:hover {
     margin: 1.25em 0 0 0;
   }
 }
+
+.container {
+  margin-inline: auto;
+  padding-inline: calc(var(--spacing) * 4);
+}
+
+.landing-slider {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+#flip {
+  height: 35px;
+  overflow: hidden;
+}
+
+#flip > div > div {
+  color: #fff;
+  //padding: 5px 12px;
+  height: 35px;
+  margin-bottom: 35px;
+  display: inline-block;
+}
+
+#flip div:first-child {
+  animation: show 5s linear infinite;
+}
+
+#flip div div {
+  font-weight: bold;
+  font-size: 28px;
+  color: black;
+}
+
+@keyframes show {
+  0% {
+    margin-top: -210px;
+  }
+  5% {
+    margin-top: -120px;
+  }
+  33% {
+    margin-top: -120px;
+  }
+  38% {
+    margin-top: -60px;
+  }
+  66% {
+    margin-top: -60px;
+  }
+  71% {
+    margin-top: 0;
+  }
+  99.99% {
+    margin-top: 0;
+  }
+  100% {
+    margin-top: -210px;
+  }
+}
+
