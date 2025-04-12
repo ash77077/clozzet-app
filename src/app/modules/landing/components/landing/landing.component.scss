@@ -250,3 +250,13 @@ article:hover {
   }
 }
 
+.foo {
+  background: hsla(192, 96%, 50%, 1);
+
+  background: linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
+
+  //background: -moz-linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
+  //
+  //background: -webkit-linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
+
+}
