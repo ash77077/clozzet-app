@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {Carousel} from "primeng/carousel";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-landing',
   imports: [
-    Carousel
+    Carousel,
+    RouterLink
   ],
   templateUrl: './landing.component.html',
   standalone: true,
@@ -13,29 +15,35 @@ import {Carousel} from "primeng/carousel";
 export class LandingComponent {
   slider: any[] = [
     {
-      img: 'assets/carousel-images/img1.jpg'
+      img: 'assets/carousel-images/img1.jpg',
+      text: 'IT companies',
+      color: "yellow"
     },
     {
-      img: 'assets/carousel-images/img2.jpg'
+      img: 'assets/carousel-images/img2.jpg',
+      text: 'Banks',
+      color: "blue"
     },
     {
-      img: 'assets/carousel-images/img3.jpg'
+      img: 'assets/carousel-images/img3.jpg',
+      text: 'Supermarkets',
+      color: "green"
     },
     {
-      img: 'assets/carousel-images/img4.jpg'
+      img: 'assets/carousel-images/img5.jpg',
+      text: 'School',
+      color: "orange"
     },
     {
-      img: 'assets/carousel-images/img5.jpg'
+      img: 'assets/carousel-images/img6.jpg',
+      text: "Expo's",
+      color: "gray"
     },
     {
-      img: 'assets/carousel-images/img6.jpg'
+      img: 'assets/carousel-images/img7.jpg',
+      text: 'Kindergarten',
+      color: "red"
     },
-    {
-      img: 'assets/carousel-images/img7.jpg'
-    },
-    {
-      img: 'assets/carousel-images/img8.jpg'
-    }
   ]
   catalogList: any[] = [
     {
@@ -69,21 +77,20 @@ export class LandingComponent {
       img: 'assets/images/pic06.png',
     },
   ];
-
   responsiveOptions = [
     {
       breakpoint: '1400px',
-      numVisible: 2,
+      numVisible: 1,
       numScroll: 1
     },
     {
       breakpoint: '1199px',
-      numVisible: 3,
+      numVisible: 1,
       numScroll: 1
     },
     {
       breakpoint: '767px',
-      numVisible: 2,
+      numVisible: 1,
       numScroll: 1
     },
     {
@@ -92,4 +99,18 @@ export class LandingComponent {
       numScroll: 1
     }
   ]
+  imageHeight: string = '580px'
+
+  constructor() {
+    const width = window.innerWidth;
+    if (width < 500) {
+      this.imageHeight = '400px';
+    }else if (width < 900 && width > 500) {
+      this.imageHeight = '630px';
+    }else if (width < 1540 && width > 900) {
+      this.imageHeight = '494px';
+    }else if (width < 2500 && width > 1541) {
+      this.imageHeight = '630px';
+    }
+  }
 }

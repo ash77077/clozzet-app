@@ -31,6 +31,10 @@
   overflow: hidden;
 }
 
+.h-800 {
+  height: 650px;
+}
+
 .tiles article > .image img {
   display: block;
   width: 100%;
@@ -154,8 +158,14 @@ article:hover {
 }
 
 @media screen and (max-width: 1280px) {
+  .tiles {
+    padding: 0;
+  }
+}
+
+@media screen and (max-width: 736px) {
   .tiles article {
-    width: calc(33.33333%);
+    width: calc(50% - 20px);
   }
 
   .tiles {
@@ -163,30 +173,15 @@ article:hover {
   }
 }
 
-@media screen and (max-width: 980px) {
-  .tiles article {
-    width: calc(50%);
-  }
-}
-
-@media screen and (max-width: 736px) {
-  .tiles article {
-    width: calc(100%);
-  }
-
-  .tiles {
-    padding: 0 150px;
-  }
-}
-
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 360px) {
   .tiles {
     margin: 0;
+
   }
 
   .tiles article {
     width: 100%;
-    margin: 1.25em 0 0 0;
+    margin: 0;
   }
 }
 
@@ -197,66 +192,82 @@ article:hover {
 
 .landing-slider {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 2fr 5fr;
 }
 
-#flip {
-  height: 35px;
-  overflow: hidden;
-}
-
-#flip > div > div {
-  color: #fff;
-  //padding: 5px 12px;
-  height: 35px;
-  margin-bottom: 35px;
-  display: inline-block;
-}
-
-#flip div:first-child {
-  animation: show 5s linear infinite;
-}
-
-#flip div div {
-  font-weight: bold;
-  font-size: 28px;
-  color: black;
-}
-
-@keyframes show {
-  0% {
-    margin-top: -210px;
-  }
-  5% {
-    margin-top: -120px;
-  }
-  33% {
-    margin-top: -120px;
-  }
-  38% {
-    margin-top: -60px;
-  }
-  66% {
-    margin-top: -60px;
-  }
-  71% {
-    margin-top: 0;
-  }
-  99.99% {
-    margin-top: 0;
-  }
-  100% {
-    margin-top: -210px;
+@media screen and (max-width: 900px) {
+  .landing-slider {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    padding: 16px 35px;
   }
 }
 
-//.foo {
-//  background: hsla(192, 96%, 50%, 1);
-//
-//  background: linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
-//
-//  //background: -moz-linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
-//  //
-//  //background: -webkit-linear-gradient(90deg, hsla(192, 96%, 50%, 1) 0%, hsla(65, 92%, 54%, 1) 100%);
-//
-//}
+
+
+
+
+
+
+
+
+
+.animation-card {
+  isolation: isolate;
+}
+
+.media-object {
+  --border-width: 3px;
+  --radius: 24px;
+
+  position: relative;
+  border-radius: var(--radius);
+  border: var(--border-width) solid transparent;
+}
+
+.media-object::before {
+  content: " ";
+  position: absolute;
+  inset: calc(var(--border-width) * -1);
+  z-index: -1;
+  border: inherit;
+  border-radius: inherit;
+  background-image: conic-gradient(from var(--angle), #381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
+  background-origin: border-box;
+  mask: linear-gradient(black, black), linear-gradient(black, black);
+  mask-clip: content-box, border-box;
+  mask-composite: exclude;
+  animation: spin 3s linear infinite;
+}
+
+@supports not (background: paint(something)) {
+  .media-object::before {
+    background-image: conic-gradient(#381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
+  }
+}
+
+.media-object:hover::before {
+  animation-play-state: paused;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
+
+@keyframes spin {
+  to {
+    --angle: 1turn;
+  }
+}
+
+.media-object {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  padding: 24px;
+}
+
+
