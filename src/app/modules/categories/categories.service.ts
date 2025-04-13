@@ -16,6 +16,10 @@ export class CategoriesService extends ApiService {
     return this.get<Category[]>(['categories'])
   }
 
+  deleteCategories(id: string): Observable<Category[]> {
+    return this.delete<Category[]>(['categories', id])
+  }
+
   createCategory(productData: any): Observable<Category> {
     const formData = new FormData();
     formData.append('image', productData.image);

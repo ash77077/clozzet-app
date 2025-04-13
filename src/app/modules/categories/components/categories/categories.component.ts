@@ -143,14 +143,15 @@ export class CategoriesComponent {
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.categories = this.categories.filter((val) => val.id !== category.id);
-        this.product = {};
-        this.messageService.add({
-          severity: 'success',
-          summary: 'Successful',
-          detail: 'Product Deleted',
-          life: 3000
-        });
+        this.categoriesService.deleteCategories(category.id!).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Category Deleted',
+            life: 3000
+          });
+          this.loadDemoData();
+        })
       }
     });
   }
@@ -194,6 +195,7 @@ export class CategoriesComponent {
     this.categoriesService.createCategory(this.categoryGroup.value).subscribe(() => {
       this.categoryDialog = false
       this.loadDemoData();
+      this.categoryGroup.reset();
     });
   }
 }

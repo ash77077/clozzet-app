@@ -130,8 +130,6 @@ export class ProductComponent implements OnInit, OnChanges {
   }
 
   editProduct(product: Product) {
-    console.log(product)
-    //     // this.product = { ...product };
     this.productDialog = true;
   }
 

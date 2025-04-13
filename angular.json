@@ -30,7 +30,8 @@
                                 "glob": "**/*",
                                 "input": "public"
                             },
-                            "src/assets"
+                            "src/assets",
+                            "src/favicon.png"
                         ],
                         "styles": [
                             "src/styles.scss"

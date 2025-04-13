@@ -16,8 +16,11 @@ export class ProductsService extends ApiService {
     return this.get<ProductCategory>(['products'])
   }
 
+  getAllProductsByCategory(category: string): Observable<ProductCategory> {
+    return this.get<ProductCategory>(['products', category])
+  }
+
   createProduct(productData: CreateProductDto): Observable<Product> {
-    console.log(productData)
     const formData = new FormData();
     formData.append('image', productData.imageUrl);
     formData.append('name', productData.name);

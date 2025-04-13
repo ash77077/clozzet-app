@@ -205,69 +205,52 @@ article:hover {
 }
 
 
-
-
-
-
-
-
-
-
-.animation-card {
-  isolation: isolate;
-}
-
-.media-object {
-  --border-width: 3px;
-  --radius: 24px;
-
+.clozzet-text {
+  z-index: 2;
   position: relative;
-  border-radius: var(--radius);
-  border: var(--border-width) solid transparent;
+  background: rgb(229 231 235 / var(--tw-bg-opacity, 1));
+  padding: 28px;
 }
 
-.media-object::before {
-  content: " ";
+
+.animation-block {
+  position: relative;
+  width: 70%;
+  background: linear-gradient(0deg, #000, #272727);
+}
+
+.animation-block:before, .animation-block:after {
+  content: '';
   position: absolute;
-  inset: calc(var(--border-width) * -1);
-  z-index: -1;
-  border: inherit;
-  border-radius: inherit;
-  background-image: conic-gradient(from var(--angle), #381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
-  background-origin: border-box;
-  mask: linear-gradient(black, black), linear-gradient(black, black);
-  mask-clip: content-box, border-box;
-  mask-composite: exclude;
-  animation: spin 3s linear infinite;
+  left: -2px;
+  top: -2px;
+  background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00,#ffff00, #ff0000, #fb0094,
+          #0000ff, #00ff00,#ffff00, #ff0000);
+  background-size: 400%;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: steam 20s linear infinite;
 }
 
-@supports not (background: paint(something)) {
-  .media-object::before {
-    background-image: conic-gradient(#381D6A 80%, #E0D1FF 88%, #E0D1FF 92%, #381D6A 100%);
+@keyframes steam {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
   }
 }
 
-.media-object:hover::before {
-  animation-play-state: paused;
+.animation-block:after {
+  filter: blur(2px);
 }
 
-@property --angle {
-  syntax: "<angle>";
-  inherits: true;
-  initial-value: 0turn;
-}
+@media screen and (max-width: 736px) {
 
-@keyframes spin {
-  to {
-    --angle: 1turn;
+  .animation-block {
+    width: 90%;
   }
 }
-
-.media-object {
-  display: flex;
-  justify-content: space-between;
-  align-items: end;
-  padding: 24px;
-}
-
-

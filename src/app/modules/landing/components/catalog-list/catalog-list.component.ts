@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ProductsService} from "@modules/products/products.service";
 
 @Component({
   selector: 'app-catalog-list',
@@ -7,6 +8,14 @@ import { Component } from '@angular/core';
   standalone: true,
   styleUrl: './catalog-list.component.scss'
 })
-export class CatalogListComponent {
+export class CatalogListComponent implements OnInit {
+  @Input() category!: string;
 
+  constructor(private productsService: ProductsService) {
+  }
+
+  ngOnInit() {
+    this.productsService.getAllProductsByCategory(this.category).subscribe(() => {
+    })
+  }
 }

@@ -1,6 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Carousel} from "primeng/carousel";
 import {RouterLink} from "@angular/router";
+import {CategoriesService} from "@modules/categories/categories.service";
+import {Category} from "@core/models/category.model";
 
 @Component({
   selector: 'app-landing',
@@ -12,7 +14,7 @@ import {RouterLink} from "@angular/router";
   standalone: true,
   styleUrl: './landing.component.scss',
 })
-export class LandingComponent {
+export class LandingComponent implements OnInit{
   slider: any[] = [
     {
       img: 'assets/carousel-images/img1.jpg',
@@ -45,38 +47,7 @@ export class LandingComponent {
       color: "red"
     },
   ]
-  catalogList: any[] = [
-    {
-      name: 'Polo',
-      description: 'bla bla',
-      img: 'assets/images/pic01.png',
-    },
-    {
-      name: 'T-shirt',
-      description: 'bla bla',
-      img: 'assets/images/pic02.png',
-    },
-    {
-      name: 'Hoodie',
-      description: 'bla bla',
-      img: 'assets/images/pic03.png',
-    },
-    {
-      name: 'Bag',
-      description: 'bla bla',
-      img: 'assets/images/pic04.png',
-    },
-    {
-      name: 'Apron',
-      description: 'bla bla',
-      img: 'assets/images/pic05.png',
-    },
-    {
-      name: 'Cap',
-      description: 'bla bla',
-      img: 'assets/images/pic06.png',
-    },
-  ];
+  catalogList: Category[] = [];
   responsiveOptions = [
     {
       breakpoint: '1400px',
@@ -101,10 +72,10 @@ export class LandingComponent {
   ]
   imageHeight: string = '580px'
 
-  constructor() {
+  constructor(private categoryService: CategoriesService) {
     const width = window.innerWidth;
     if (width < 500) {
-      this.imageHeight = '400px';
+      this.imageHeight = '450px';
     }else if (width < 900 && width > 500) {
       this.imageHeight = '630px';
     }else if (width < 1540 && width > 900) {
@@ -112,5 +83,11 @@ export class LandingComponent {
     }else if (width < 2500 && width > 1541) {
       this.imageHeight = '630px';
     }
+  }
+
+  ngOnInit() {
+    this.categoryService.getCategories().subscribe((d: Category[]) => {
+      this.catalogList = d
+    })
   }
 }
