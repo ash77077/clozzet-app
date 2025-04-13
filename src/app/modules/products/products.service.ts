@@ -16,8 +16,8 @@ export class ProductsService extends ApiService {
     return this.get<ProductCategory>(['products'])
   }
 
-  getAllProductsByCategory(category: string): Observable<ProductCategory> {
-    return this.get<ProductCategory>(['products', category])
+  getAllProductsByCategory(category: string): Observable<Product[]> {
+    return this.get<Product[]>(['products', category])
   }
 
   createProduct(productData: CreateProductDto): Observable<Product> {
@@ -28,5 +28,9 @@ export class ProductsService extends ApiService {
     formData.append('category', productData.category);
 
     return this.post<Product>(['products', 'with-image'], formData)
+  }
+
+  deleteProduct(id: string): Observable<Product> {
+    return this.delete<Product>(['products', id])
   }
 }

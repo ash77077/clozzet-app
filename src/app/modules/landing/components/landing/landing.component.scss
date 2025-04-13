@@ -18,7 +18,7 @@
   transition: transform 0.5s ease,
   opacity 0.5s ease;
   position: relative;
-  width: calc(33.33333% - 16px);
+  width: calc(16.6% - 16px);
   cursor: pointer;
 }
 
@@ -249,8 +249,12 @@ article:hover {
 }
 
 @media screen and (max-width: 736px) {
-
   .animation-block {
     width: 90%;
+  }
+}
+@media screen and (max-width: 1236px) {
+  .animation-block {
+    width: 100%;
   }
 }

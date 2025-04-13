@@ -137,7 +137,7 @@ export class CategoriesComponent {
     this.submitted = false;
   }
 
-  deleteProduct(category: Product) {
+  deleteCategory(category: Product) {
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + category.name + '?',
       header: 'Confirm',

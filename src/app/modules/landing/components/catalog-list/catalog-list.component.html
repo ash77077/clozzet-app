@@ -1,69 +1,23 @@
-<section class="bg-white py-20 dark:bg-dark">
-	<div class="container">
-		<div class="break-inside-avoid gap-8 md:columns-2 lg:columns-3">
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic01.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/logo-black.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/no-image.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic03.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic06.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic05.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic02.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic04.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
-			<div class="mb-8 overflow-hidden rounded-xl">
-				<img
-						src="./assets/images/pic03.png"
-						alt="gallery image"
-						class="w-full object-cover object-center"
-				/>
-			</div>
+<div class="card flex justify-center">
+	<div *ngIf="images && images.length > 0" class="grid grid-cols-12 gap-4" style="max-width: 800px;">
+		<div *ngFor="let image of images; let index = index" class="col-span-4">
+			<img [src]="image.imageUrl" alt="" style="cursor: pointer" (click)="imageClick(index)" />
 		</div>
 	</div>
-</section>
+	<p-galleria
+			[(visible)]="displayCustom"
+			[value]="images"
+			[(activeIndex)]="activeIndex"
+			[responsiveOptions]="responsiveOptions"
+			[containerStyle]="{ 'max-width': '850px' }"
+			[numVisible]="7"
+			[circular]="true"
+			[fullScreen]="true"
+			[showItemNavigators]="true"
+			[showThumbnails]="false"
+	>
+		<ng-template #item let-item>
+			<img [src]="item.imageUrl" style="width: 100%; display: block;" alt=""/>
+		</ng-template>
+	</p-galleria>
+</div>

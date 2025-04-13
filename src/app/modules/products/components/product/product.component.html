@@ -55,7 +55,7 @@
 
 <p-confirmdialog [style]="{ width: '450px' }"></p-confirmdialog>
 @if (categories) {
-	<p-tabs [value]="0">
+	<p-tabs [value]="0" scrollable>
 		<p-tablist>
 			@for (tab of categories; track tab; let i = $index) {
 				<p-tab [value]="i">

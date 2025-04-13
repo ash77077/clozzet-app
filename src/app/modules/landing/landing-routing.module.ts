@@ -9,7 +9,7 @@ const routes: Routes = [
     component: LandingComponent,
   },
   {
-    path: ':category',
+    path: ':id',
     component: CatalogListComponent,
   },
 ];

@@ -93,7 +93,9 @@ export class ProductComponent implements OnInit, OnChanges {
   constructor(
     private productService: ProductsService,
     private categoryService: CategoriesService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private confirmationService: ConfirmationService,
+    private messageService: MessageService,
   ) {
     this.productGroup = this.fb.group({
       imageUrl: new FormControl(),
@@ -131,6 +133,7 @@ export class ProductComponent implements OnInit, OnChanges {
 
   editProduct(product: Product) {
     this.productDialog = true;
+    console.log(product)
   }
 
   hideDialog() {
@@ -148,7 +151,22 @@ export class ProductComponent implements OnInit, OnChanges {
     return this.product[name] ?? this.product[name?.toLowerCase()];
   }
 
-  deleteProduct(data: ProductCategory) {
-    console.log(data)
+  deleteProduct(product: Product) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + product.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.productService.deleteProduct(product.id!).subscribe(() => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Successful',
+            detail: 'Category Deleted',
+            life: 3000
+          });
+          this.getProductData()
+        })
+      }
+    });
   }
 }

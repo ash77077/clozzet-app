@@ -75,7 +75,7 @@ export class LandingComponent implements OnInit{
   constructor(private categoryService: CategoriesService) {
     const width = window.innerWidth;
     if (width < 500) {
-      this.imageHeight = '450px';
+      this.imageHeight = '400px';
     }else if (width < 900 && width > 500) {
       this.imageHeight = '630px';
     }else if (width < 1540 && width > 900) {

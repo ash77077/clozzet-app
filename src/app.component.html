@@ -1,2 +1,9 @@
+@if (loadingService.loading$ | async; as count) {
+	@if (count > 0) {
+		<div class="loading-overlay">
+			<span class="loader"></span>
+		</div>
+	}
+}
 <router-outlet></router-outlet>
 <app-configurator></app-configurator>
