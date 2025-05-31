@@ -8,7 +8,11 @@ import {AsyncPipe} from "@angular/common";
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AppConfiguratorComponent, AsyncPipe],
+  imports: [
+    RouterOutlet,
+    AppConfiguratorComponent,
+    AsyncPipe,
+  ],
   templateUrl: 'app.component.html',
 })
 export class AppComponent implements OnInit {

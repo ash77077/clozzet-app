@@ -13,10 +13,6 @@ export const rolesGuard: CanActivateFn = (
   const expectedRoles: EUserRole[] = route.data[`roles`];
   return userService.currentUser$.pipe(filter((u) => !!u)).subscribe((user: UserModel): boolean => {
     if (expectedRoles.includes(user?.role)) {
-      // if (route.parent!.routeConfig!.path === ENavBar.BULK_TOP_UP) {
-      //   router.navigate(['/']);
-      //   return false;
-      // }
       return true;
     } else {
       if (user?.role === EUserRole.GUEST) {

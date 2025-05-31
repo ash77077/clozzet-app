@@ -1,159 +1,281 @@
-<div class="flex w-full items-center bg-white dark:bg-dark px-10 py-3">
-	<div class="container mx-auto">
-		<div class="relative -mx-4 flex items-center justify-between">
-			<div class="w-60 max-w-full px-4">
-				<img
-						src="assets/images/logo-black.png"
-						alt="logo"
-						class="dark:hidden"
-				/>
-				<img
-						src="assets/images/logo-white.png"
-						alt="logo"
-						class="hidden dark:block"
-				/>
-			</div>
-			<div class="flex w-full items-center justify-between px-4">
-				<div>
-					<button
-							id="navbarToggler"
-							class="absolute right-4 top-1/2 block -translate-y-1/2 rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
-					>
-                <span
-		                class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
-                ></span>
-						<span
-								class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
-						></span>
-						<span
-								class="relative my-[6px] block h-[2px] w-[30px] bg-body-color dark:bg-white"
-						></span>
-					</button>
-					<!--					<nav-->
-					<!--							id="navbarCollapse"-->
-					<!--							class="absolute right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-2 shadow lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none dark:bg-dark-2 lg:dark:bg-transparent"-->
-					<!--					>-->
-					<!--						<ul class="block lg:flex">-->
-					<!--							<li>-->
-					<!--								<a-->
-					<!--										href="javascript:void(0)"-->
-					<!--										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"-->
-					<!--								>-->
-					<!--									Home-->
-					<!--								</a>-->
-					<!--							</li>-->
-					<!--							<li>-->
-					<!--								<a-->
-					<!--										href="javascript:void(0)"-->
-					<!--										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"-->
-					<!--								>-->
-					<!--									Payment-->
-					<!--								</a>-->
-					<!--							</li>-->
-					<!--							<li>-->
-					<!--								<a-->
-					<!--										href="javascript:void(0)"-->
-					<!--										class="flex py-2 text-base font-medium text-body-color hover:text-dark lg:ml-12 lg:inline-flex dark:text-dark-6 dark:hover:text-white"-->
-					<!--								>-->
-					<!--									Features-->
-					<!--								</a>-->
-					<!--							</li>-->
-					<!--						</ul>-->
-					<!--					</nav>-->
-				</div>
-				<div class="hidden justify-end pr-16 sm:flex lg:pr-0">
-					<div
-							routerLink="/auth"
-							class="px-7 py-3 text-base font-medium text-dark hover:text-primary dark:text-white cursor-pointer"
-					>
-						Login
-					</div>
-					<a
-							href="javascript:void(0)"
-							class="rounded-md bg-primary px-7 py-3 text-base font-medium text-white hover:bg-primary/90"
-					>
-						Sign Up
-					</a>
-				</div>
-			</div>
-		</div>
+<header>
+	<div class="logo">
+		<img src="assets/images/logo-black.png" alt="Clozzet Logo">
 	</div>
-</div>
-<div class="landing-slider md:mx-15 sm:mx-5 md:mx-15 lg:mx-20 border border-gray bg-gray-3">
-	<div class="relative overflow-hidden">
-		<p-carousel
-				[value]="slider"
-				[numVisible]="1"
-				[numScroll]="1"
-				[circular]="true"
-				orientation="vertical"
-				[responsiveOptions]="responsiveOptions"
-				[showIndicators]="false"
-				[showNavigators]="false"
-				autoplayInterval="3500"
-				[verticalViewPortHeight]="imageHeight"
-				contentClass="flex items-center"
-		>
-			<ng-template let-product #item>
-				<div class="relative mx-auto">
-					<img
-							[src]="product.img" [alt]="product.name"
-							style="max-width: 500px; aspect-ratio: 4 / 5;"
-							class="w-full rounded-border"/>
-				</div>
-			</ng-template>
-		</p-carousel>
+	<p-menubar [model]="menuItems"></p-menubar>
+	<div class="flex gap-4">
+		<p-button label="Get a Quote" styleClass="cta-button" (click)="openQuote()"></p-button>
+		<p-button label="Login" text routerLink="/auth"></p-button>
 	</div>
-	<div class="sm:px-5 md:px-15 lg:px-20 px-2 text-center flex flex-col items-center justify-center mt-12">
-		<div class="animation-block">
-			<div class="font-bold text-6xl clozzet-text">Welcome to Clozzet</div>
-		</div>
-		<h2>Your Partner in Fashion Supply</h2>
-		<div class="text-xl">
-			<div>At <b>Clozzet</b>, we specialize in high-quality custom clothing for businesses that care about
-			     comfort,
-			     durability, and brand identity. From tailored uniforms for IT teams to stylish workwear for
+</header>
+
+<section class="banner" id="home">
+	<p-carousel
+			[value]="bannerItems" [showNavigators]="false" [numVisible]="1" [numScroll]="1" [circular]="true"
+			[autoplayInterval]="5000">
+		<ng-template let-item #item>
+			<div class="banner-item">
+				<img [src]="item.image" [alt]="item.title">
+				<h1>{{ item.title }}</h1>
+				<p>{{ item.description }}</p>
 			</div>
-			<div>
-				<p-carousel
-						[value]="slider"
-						[numVisible]="1"
-						[numScroll]="1"
-						[circular]="true"
-						orientation="vertical"
-						[responsiveOptions]="responsiveOptions"
-						[showIndicators]="false"
-						[showNavigators]="false"
-						autoplayInterval="3500"
-						verticalViewPortHeight="35px"
-						contentClass="flex items-center"
-				>
-					<ng-template let-product #item>
-						<div class="text-4xl w-full font-bold" [style]="{color: product.color}">{{ product.text }}</div>
-					</ng-template>
-				</p-carousel>
+		</ng-template>
+	</p-carousel>
+</section>
+
+<div class="px-5 mt-4 header fade-in " appFadeInOnScroll>
+	<h2>B2B Textile Solutions</h2>
+	<p>Professional-grade apparel and textile products for businesses, organizations, and bulk orders</p>
+
+	<div class="stats-section">
+		<div class="stats-grid">
+			<div class="stat-item">
+				<span class="stat-number">98%</span>
+				<span class="stat-label">Customer Satisfaction</span>
 			</div>
-			<div>
-				we’ve got you covered.
+			<div class="stat-item">
+				<span class="stat-number">70+</span>
+				<span class="stat-label">Happy Clients</span>
+			</div>
+			<div class="stat-item">
+				<span class="stat-number">500+</span>
+				<span class="stat-label">Orders Delivered</span>
+			</div>
+			<div class="stat-item">
+				<span class="stat-number">24/7</span>
+				<span class="stat-label">Customer Support</span>
 			</div>
 		</div>
 	</div>
 </div>
 
-<div class="mt-5 sm:mx-5 md:mx-15 lg:mx-20 border border-gray bg-gray-3">
-	<div class="tiles">
-		@for (item of catalogList; track item.name; let i = $index) {
-			<article class="style2" [routerLink]="item.id">
-	      <span class="image">
-	        <img [src]="item.imageUrl" alt=""/>
-	      </span>
-				<div class="txt-info">
-					<h2>{{ item.name }}</h2>
-					<div class="content">
-					</div>
+<section id="about" class="why-choose-us mt-20 fade-in" appFadeInOnScroll style="transition-delay: 300ms;">
+	<h2>About Us</h2>
+	<div class="reasons-grid">
+		<div class="reason">
+			<div class="flex justify-center">
+				<img style="color: var(--primary-color);" src="assets/svg/who-we-are.svg" alt="">
+			</div>
+			<h3>Who We Are</h3>
+			<p>We are Clozzet, a trusted leader in B2B textile solutions, specializing in high-quality, logo-branded apparel
+			   and accessories. With years of expertise, we partner with businesses to deliver customized clothing that
+			   elevates brand identity and fosters connection.</p>
+		</div>
+		<div class="reason">
+			<div class="flex justify-center">
+				<img style="color: var(--primary-color);" src="assets/svg/what-we-provide.svg" alt="">
+			</div>
+			<h3>What We Provide</h3>
+			<p>Our product range includes premium T-shirts, polos, hoodies, tote bags, and more, designed for durability,
+			   comfort, and style. We offer end-to-end customization, from logo integration to eco-friendly fabric options,
+			   ensuring your brand stands out.</p>
+		</div>
+		<div class="reason">
+			<div class="flex justify-center">
+				<img style="color: var(--primary-color);" src="assets/svg/our-mission.svg" alt="">
+			</div>
+			<h3>Our Mission</h3>
+			<p>Our mission is to empower businesses to express their unique identity through sustainable, high-quality branded
+			   apparel. We are committed to delivering innovative textile solutions that blend creativity, functionality, and
+			   environmental responsibility.</p>
+		</div>
+		<div class="reason">
+			<div class="flex justify-center">
+				<img style="color: var(--primary-color);" src="assets/svg/why-choose-us.svg" alt="">
+			</div>
+			<h3>Why Choose Us</h3>
+			<p>Partner with us for unparalleled quality, reliability, and service. Our state-of-the-art production ensures
+			   precision, while our dedication to sustainability minimizes environmental impact. With competitive pricing,
+			   fast turnaround times, and a customer-first approach, we make your brand shine.</p>
+		</div>
+	</div>
+</section>
+
+
+<section class="why-choose-us mt-20 fade-in" appFadeInOnScroll style="transition-delay: 300ms;">
+	<h2>Why Choose Us</h2>
+	<div class="reasons-grid">
+		<div class="reason">
+			<i class="pi pi-check-circle" style="font-size: 3em; color: var(--primary-color);"></i>
+			<h3>Quality Products</h3>
+			<p>We use only the best materials for our clothing.</p>
+		</div>
+		<div class="reason">
+			<i class="pi pi-cog" style="font-size: 3em; color: var(--primary-color);"></i>
+			<h3>Custom Solutions</h3>
+			<p>Tailored to your brand's specific needs.</p>
+		</div>
+		<div class="reason">
+			<i class="pi pi-users" style="font-size: 3em; color: var(--primary-color);"></i>
+			<h3>Excellent Service</h3>
+			<p>Our team is dedicated to your satisfaction.</p>
+		</div>
+	</div>
+</section>
+
+<div class="what-our-clients-say px-5 mt-20">
+	<div class="section-header fade-in" appFadeInOnScroll>
+		<h2 class="section-title">What Our Clients Say</h2>
+		<!--		<p class="section-subtitle">Trusted by over 1,000+ businesses worldwide for their textile and apparel needs</p>-->
+	</div>
+
+	<div class="testimonials-grid">
+		<div class="testimonial-card slide-in">
+			<div class="quote-icon">"</div>
+			<div class="rating-stars">★★★★★</div>
+			<p class="testimonial-content">
+				"Outstanding quality and service! We've been ordering corporate uniforms for our 200+ employees for over 3
+				years. The consistency in quality and timely delivery has made them our go-to textile partner."
+			</p>
+			<div class="client-info">
+				<div class="client-avatar">MJ</div>
+				<div class="client-details">
+					<h4>Michael Johnson</h4>
+					<p>Operations Manager, <span class="company-name">TechCorp Solutions</span></p>
 				</div>
-			</article>
-		}
+			</div>
+		</div>
+
+		<div class="testimonial-card slide-in">
+			<div class="quote-icon">"</div>
+			<div class="rating-stars">★★★★★</div>
+			<p class="testimonial-content">
+				"Exceptional bulk pricing and customization options. Their team helped us design branded merchandise for our
+				annual conference of 5,000 attendees. The quality exceeded our expectations."
+			</p>
+			<div class="client-info">
+				<div class="client-avatar">SR</div>
+				<div class="client-details">
+					<h4>Sarah Rodriguez</h4>
+					<p>Marketing Director, <span class="company-name">Global Events Inc.</span></p>
+				</div>
+			</div>
+		</div>
+
+		<div class="testimonial-card slide-in">
+			<div class="quote-icon">"</div>
+			<div class="rating-stars">★★★★★</div>
+			<p class="testimonial-content">
+				"Professional service from start to finish. We needed industrial workwear for our manufacturing facility, and
+				they delivered exactly what we needed on time and within budget."
+			</p>
+			<div class="client-info">
+				<div class="client-avatar">DW</div>
+				<div class="client-details">
+					<h4>David Wilson</h4>
+					<p>Plant Manager, <span class="company-name">Industrial Manufacturing Co.</span></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="contact" class="cta-section fade-in" appFadeInOnScroll>
+		<h3 class="cta-title">Ready to Join Our Satisfied Clients?</h3>
+		<p class="cta-description">
+			Get started with your bulk textile order today. Our team is ready to provide you with a custom quote and
+			professional consultation.
+		</p>
+		<div class="cta-buttons">
+			<a class="btn-primary" (click)="openQuote()">Get Free Quote</a>
+			<a class="btn-secondary" (click)="display = true">Contact Sales Team</a>
+		</div>
 	</div>
 </div>
 
+<footer class="mt-20">
+	<p>© {{ currentDate }} Clozzet. All rights reserved.</p>
+	<div class="social-links">
+		<a href="https://www.facebook.com/share/1Yf5W7YxST/?mibextid=wwXIfr" target="_blank">
+			<p-button icon="pi pi-facebook" styleClass="p-button-rounded p-button-text"></p-button>
+		</a>
+		<a href="https://www.linkedin.com/company/clozzet1/" target="_blank">
+			<p-button icon="pi pi-linkedin" styleClass="p-button-rounded p-button-text"></p-button>
+		</a>
+		<a href="https://www.instagram.com/clozzet.corp?igsh=MXByeDltZTVyNDMwZQ==" target="_blank">
+			<p-button icon="pi pi-instagram" styleClass="p-button-rounded p-button-text"></p-button>
+		</a>
+	</div>
+</footer>
+
+
+<p-dialog
+		header="Contact Sales Team" [(visible)]="display" [modal]="true" [style]="{ width: '50vw' }"
+		class="bg-white rounded-lg shadow-xl">
+	<form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="p-6">
+		<div class="p-fluid p-grid space-y-4">
+			<div class="p-field p-col-12">
+				<label for="name" class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+				<input
+						pInputText id="name" formControlName="name"
+						class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"/>
+				@if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+					<small class="p-error text-orange-600 text-xs mt-1">
+						Full name is required
+					</small>
+				}
+			</div>
+
+			<div class="p-field p-col-12 p-md-6">
+				<label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+				<input
+						pInputText id="email" formControlName="email"
+						class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"/>
+				@if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+					<small class="p-error text-orange-600 text-xs mt-1">
+						Valid email is required
+					</small>
+				}
+			</div>
+
+			<div class="p-field p-col-12 p-md-6">
+				<label for="phone" class="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+				<input
+						pInputText id="phone" formControlName="phone"
+						class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"/>
+				@if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+					<small class="p-error text-orange-600 text-xs mt-1">
+						Valid phone number is required
+					</small>
+				}
+			</div>
+
+			<div class="p-field p-col-12">
+				<label for="company" class="block text-sm font-medium text-gray-700 mb-1">Company Name</label>
+				<input
+						pInputText id="company" formControlName="company"
+						class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"/>
+				@if (contactForm.get('company')?.invalid && contactForm.get('company')?.touched) {
+					<small class="p-error text-orange-600 text-xs mt-1">
+						Company name is required
+					</small>
+				}
+			</div>
+
+			<div class="p-field p-col-12">
+				<label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+				<textarea
+						pInputTextarea id="message" formControlName="message"
+						class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-orange-500 focus:border-orange-500 transition-colors"
+						rows="4"></textarea>
+				@if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+					<small class="p-error text-orange-600 text-xs mt-1">
+						Message is required
+					</small>
+				}
+			</div>
+		</div>
+
+		<div class="p-dialog-footer mt-6 flex justify-end space-x-2">
+			<button
+					pButton type="button"
+					class="p-button-secondary bg-gray-200 text-gray-700 hover:bg-gray-300 border-none rounded-md px-4 py-2 transition-colors"
+					(click)="close()">Cancel
+			</button>
+			<button
+					pButton type="submit"
+					class="bg-orange-500 text-white hover:bg-orange-600 border-none rounded-md px-4 py-2 transition-colors"
+					[disabled]="contactForm.invalid">Submit
+			</button>
+		</div>
+	</form>
+</p-dialog>

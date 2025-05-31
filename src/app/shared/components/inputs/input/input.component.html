@@ -1,13 +1,15 @@
-<label [for]="label" class="label" [class]="labelClass">{{label}}</label><span class="err-msg-text fz-16" *ngIf="isRequired">*</span>
-<input
-        class="e-input"
-        [ngClass]="inputClass"
-        [class.input-error]="control?.invalid && control?.touched"
-        dir="ltr"
-        [formControl]="control"
-        [placeholder]="placeholder"
-        [type]="type"
-        [id]="label"
->
-
+<div class="flex flex-col">
+	<label [for]="label" class="label" [class]="labelClass">{{ label }}</label><span
+		class="err-msg-text fz-16" *ngIf="isRequired">*</span>
+	<input
+			class="e-input"
+			[ngClass]="inputClass"
+			[class.input-error]="control?.invalid && control?.touched"
+			dir="ltr"
+			[formControl]="control"
+			[placeholder]="placeholder"
+			[type]="type"
+			[id]="label"
+	>
+</div>
 <!-- <div *ngIf="control.invalid && control.touched" class="err-msg-text mt-8">Something went wrong</div> -->
