@@ -38,7 +38,7 @@ export class LandingComponent implements OnInit {
   currentDate = new Date().getFullYear()
   display: boolean = false;
   contactForm: FormGroup;
-
+  innerWith = window.innerWidth
   contactGroup: FormGroup;
 
   menuItems: MenuItem[] = [
@@ -101,7 +101,7 @@ export class LandingComponent implements OnInit {
 
   openQuote() {
     this.dialogService.open(GetQuoteModalComponent, {
-      width: '30vw',
+      width: '550px',
       closable: true,
       dismissableMask: true
     });

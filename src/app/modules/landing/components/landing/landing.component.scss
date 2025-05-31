@@ -26,7 +26,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .logo img {
@@ -75,7 +75,7 @@ header {
 
 .banner-item h1, .banner-item p {
   color: white;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
   position: relative;
   z-index: 1;
 }
@@ -106,7 +106,7 @@ header {
 
 .category-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .category-image img {
@@ -142,7 +142,7 @@ header {
   padding: 20px;
   background-color: white;
   border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .testimonial {
@@ -232,7 +232,7 @@ footer {
   padding: 2rem;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .stat-item {
@@ -333,7 +333,7 @@ footer {
 .category-card:hover {
   border-color: #f97316;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .category-header {
@@ -372,6 +372,10 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.mobile-logo {
+  height: 20px !important;
 }
 
 .product-count {
@@ -455,8 +459,14 @@ footer {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .what-our-clients-say {
@@ -499,12 +509,12 @@ footer {
     padding: 2rem;
     position: relative;
     transition: all 0.3s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   }
 
   .testimonial-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     border-color: #f97316;
   }
 
@@ -569,8 +579,6 @@ footer {
     color: #f97316;
     font-weight: 500;
   }
-
-
 
 
   .stat-item {
