@@ -1,12 +1,12 @@
 <header>
 	<div class="logo">
-		<img [class.mobile-logo]="innerWith < 400" src="assets/images/logo-black.png" alt="Clozzet Logo">
+		<img [class.mobile-logo]="innerWith < 600" src="assets/images/logo-black.png" alt="Clozzet Logo">
 	</div>
-	@if (innerWith > 400) {
+	@if (innerWith > 600) {
 		<p-menubar [model]="menuItems"></p-menubar>
 	}
 	<div class="flex gap-4">
-		@if (innerWith > 400) {
+		@if (innerWith > 600) {
 			<p-button label="Get a Quote" styleClass="cta-button" (click)="openQuote()"></p-button>
 		}
 		<p-button label="Login" text routerLink="/auth"></p-button>
