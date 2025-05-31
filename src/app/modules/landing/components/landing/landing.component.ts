@@ -117,9 +117,9 @@ export class LandingComponent implements OnInit {
     this.contactService.submitContactForm(formData)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (response) => {
-          console.log(response)
+        next: () => {
           this.contactForm.reset();
+          this.display = false;
         },
         error: (error) => {
           console.error('Form submission error:', error);

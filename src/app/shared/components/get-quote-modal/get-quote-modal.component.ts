@@ -60,9 +60,9 @@ export class GetQuoteModalComponent {
     this.contactService.submitQuoteForm(formData)
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe({
-        next: (response) => {
-          console.log(response)
-          // this.quoteForm.reset();
+        next: () => {
+          this.quoteForm.reset()
+          this.display = false
         },
         error: (error) => {
           console.error('Form submission error:', error);
