@@ -1,0 +1,320 @@
+<app-navbar></app-navbar>
+
+<div class="contact-page">
+  <!-- Hero Section -->
+  <section class="contact-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p class="hero-subtitle">Get in Touch with Our B2B Textile Experts</p>
+        <p class="hero-description">
+          Ready to discuss your corporate apparel needs? Our team is here to help you find the perfect 
+          textile solutions for your business. Get a quote, ask questions, or explore partnership opportunities.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Information Section -->
+  <section class="contact-info-section">
+    <div class="container">
+      <div class="contact-info-grid">
+        @for (info of contactInfo; track info.title) {
+        <div class="contact-info-card">
+          <div class="info-icon">
+            <i class="pi {{ info.icon }}"></i>
+          </div>
+          <div class="info-content">
+            <h3>{{ info.title }}</h3>
+            <div class="info-details">
+              @for (detail of info.details; track detail) {
+              <p>{{ detail }}</p>
+              }
+            </div>
+            @if (info.link) {
+            <a [href]="info.link" class="contact-link">
+              Contact Now <i class="pi pi-arrow-right"></i>
+            </a>
+            }
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="contact-form-section">
+    <div class="container">
+      <div class="form-container">
+        <div class="form-header">
+          <h2>Send Us a Message</h2>
+          @if (!isQuoteRequest()) {
+          <p>
+            Fill out the form below and we'll get back to you within 24 hours
+          </p>
+          }
+          @if (isQuoteRequest()) {
+          <p class="quote-notice">
+            <i class="pi pi-info-circle"></i>
+            You're requesting a product quote. Our sales team will contact you with pricing details.
+          </p>
+          }
+        </div>
+
+        <form [formGroup]="contactForm" (ngSubmit)="onSubmit()" class="contact-form">
+          <div class="form-grid">
+            <!-- Personal Information -->
+            <div class="form-section">
+              <h4>Contact Information</h4>
+              
+              <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input
+                  pInputText
+                  id="name"
+                  formControlName="name"
+                  placeholder="Your full name"
+                  [class.error]="contactForm.get('name')?.invalid && contactForm.get('name')?.touched">
+                @if (contactForm.get('name')?.invalid && contactForm.get('name')?.touched) {
+                <small class="error-message">
+                  Full name is required (minimum 2 characters)
+                </small>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input
+                  pInputText
+                  id="email"
+                  formControlName="email"
+                  placeholder="your@company.com"
+                  [class.error]="contactForm.get('email')?.invalid && contactForm.get('email')?.touched">
+                @if (contactForm.get('email')?.invalid && contactForm.get('email')?.touched) {
+                <small class="error-message">
+                  Valid email address is required
+                </small>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input
+                  pInputText
+                  id="phone"
+                  formControlName="phone"
+                  placeholder="+1 (555) 123-4567"
+                  [class.error]="contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched">
+                @if (contactForm.get('phone')?.invalid && contactForm.get('phone')?.touched) {
+                <small class="error-message">
+                  Valid phone number is required
+                </small>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="company">Company Name *</label>
+                <input
+                  pInputText
+                  id="company"
+                  formControlName="company"
+                  placeholder="Your company name"
+                  [class.error]="contactForm.get('company')?.invalid && contactForm.get('company')?.touched">
+                @if (contactForm.get('company')?.invalid && contactForm.get('company')?.touched) {
+                <small class="error-message">
+                  Company name is required
+                </small>
+                }
+              </div>
+            </div>
+
+            <!-- Inquiry Details -->
+            <div class="form-section">
+              <h4>Inquiry Details</h4>
+              
+              <div class="form-group">
+                <label for="inquiryType">Type of Inquiry *</label>
+                <p-dropdown
+                  id="inquiryType"
+                  formControlName="inquiryType"
+                  [options]="inquiryTypes"
+                  placeholder="Select inquiry type"
+                  optionLabel="label"
+                  optionValue="value"
+                  [class.error]="contactForm.get('inquiryType')?.invalid && contactForm.get('inquiryType')?.touched">
+                </p-dropdown>
+                @if (contactForm.get('inquiryType')?.invalid && contactForm.get('inquiryType')?.touched) {
+                <small class="error-message">
+                  Please select an inquiry type
+                </small>
+                }
+              </div>
+
+              <div class="form-group">
+                <label for="subject">Subject *</label>
+                <input
+                  pInputText
+                  id="subject"
+                  formControlName="subject"
+                  placeholder="Brief subject line"
+                  [class.error]="contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched">
+                @if (contactForm.get('subject')?.invalid && contactForm.get('subject')?.touched) {
+                <small class="error-message">
+                  Subject is required (minimum 5 characters)
+                </small>
+                }
+              </div>
+
+              <div class="form-group full-width">
+                <label for="message">Message *</label>
+                <textarea
+                  pInputTextarea
+                  id="message"
+                  formControlName="message"
+                  placeholder="Please provide details about your inquiry, including quantity needed, timeline, budget range, and any specific requirements..."
+                  rows="6"
+                  [class.error]="contactForm.get('message')?.invalid && contactForm.get('message')?.touched">
+                </textarea>
+                @if (contactForm.get('message')?.invalid && contactForm.get('message')?.touched) {
+                <small class="error-message">
+                  Message is required (minimum 10 characters)
+                </small>
+                }
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <p class="form-note">
+              <i class="pi pi-info-circle"></i>
+              All fields marked with * are required. We typically respond within 24 hours during business days.
+            </p>
+            
+            <div class="action-buttons">
+              <p-button
+                label="Send Message"
+                type="submit"
+                styleClass="submit-btn"
+                [disabled]="contactForm.invalid || isSubmitting()"
+                [loading]="isSubmitting()"
+                icon="pi pi-send">
+              </p-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Quick answers to common questions about our B2B textile services</p>
+      </div>
+
+      <div class="faq-container">
+        @for (faq of faqs; track faq.question; let i = $index) {
+        <div class="faq-item">
+          <div class="faq-question" (click)="toggleFAQ(i)">
+            <h4>{{ faq.question }}</h4>
+            <i class="pi" [class.pi-chevron-down]="!faq.expanded" [class.pi-chevron-up]="faq.expanded"></i>
+          </div>
+          <div class="faq-answer" [class.expanded]="faq.expanded">
+            <p>{{ faq.answer }}</p>
+          </div>
+        </div>
+        }
+      </div>
+
+      <div class="faq-cta">
+        <p>Still have questions? <strong>Contact our team directly for personalized assistance.</strong></p>
+        <div class="faq-actions">
+          <p-button 
+            label="Call Us Now" 
+            styleClass="faq-btn-primary" 
+            icon="pi pi-phone"
+            (click)="callPhoneNumber()">
+          </p-button>
+          <p-button 
+            label="Email Support" 
+            styleClass="faq-btn-secondary" 
+            icon="pi pi-envelope"
+            (click)="sendEmail()">
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Map and Additional Info Section -->
+  <section class="location-section">
+    <div class="container">
+      <div class="location-content">
+        <div class="location-info">
+          <h3>Visit Our Showroom</h3>
+          <p>
+            Schedule an appointment to see our product samples in person and discuss your 
+            project requirements with our team face-to-face.
+          </p>
+          
+          <div class="location-details">
+            <div class="detail-item">
+              <i class="pi pi-map-marker"></i>
+              <span>123 Business Ave, Corporate District, New York, NY 10001</span>
+            </div>
+            <div class="detail-item">
+              <i class="pi pi-car"></i>
+              <span>Free parking available on-site</span>
+            </div>
+            <div class="detail-item">
+              <i class="pi pi-calendar"></i>
+              <span>Appointments available Monday-Friday, 9 AM - 5 PM</span>
+            </div>
+          </div>
+
+          <p-button 
+            label="Schedule Appointment" 
+            styleClass="appointment-btn" 
+            icon="pi pi-calendar-plus">
+          </p-button>
+        </div>
+
+        <div class="map-placeholder">
+          <!-- In a real application, you would integrate Google Maps or similar -->
+          <div class="map-content">
+            <i class="pi pi-map"></i>
+            <h4>Interactive Map</h4>
+            <p>Map integration would be implemented here with your preferred mapping service.</p>
+            <p-button 
+              label="Get Directions" 
+              styleClass="directions-btn" 
+              icon="pi pi-compass"
+              text>
+            </p-button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Response Time Guarantee -->
+  <section class="guarantee-section">
+    <div class="container">
+      <div class="guarantee-content">
+        <div class="guarantee-icon">
+          <i class="pi pi-clock"></i>
+        </div>
+        <div class="guarantee-text">
+          <h3>24-Hour Response Guarantee</h3>
+          <p>
+            We guarantee a response to all inquiries within 24 hours during business days. 
+            For urgent requests, call us directly at <strong>+1 (555) 123-4567</strong>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './components/landing/landing.component';
 import {CatalogListComponent} from "@modules/landing/components/catalog-list/catalog-list.component";
+import {Landing2Component} from "@modules/landing/components/landing2/landing2.component";
 
 const routes: Routes = [
   {
     path: '',
-    component: LandingComponent,
+    component: Landing2Component,
   },
   {
     path: ':id',

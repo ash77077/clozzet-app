@@ -4,6 +4,48 @@
 @use 'primeicons/primeicons.css';
 @use './assets/demo/demo.scss';
 
+:root {
+  // Brand Colors
+  --primary-color: #f97316;
+  --primary-dark: #ea580c;
+  --secondary-color: #1f2937;
+  
+  // Text Colors
+  --text-color: #374151;
+  --text-light: #6b7280;
+  --white: #ffffff;
+  
+  // Status Colors
+  --error-color: #ef4444;
+  --success-color: #10b981;
+  
+  // Background Colors
+  --bg-light: #f9fafb;
+  --background-color: #f8f9fa;
+  
+  // Shadows
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  
+  // Border Radius
+  --border-radius: 12px;
+  
+  // Layout
+  --container-max-width: 1200px;
+  
+  // Navbar
+  --navbar-height: 70px;
+  --navbar-height-mobile: 60px;
+  
+  // Z-index
+  --z-navbar: 1000;
+  --z-mobile-menu: 1001;
+  --z-overlay: 999;
+  
+  // Transitions
+  --transition: all 0.3s ease;
+}
+
 body {
   margin: 0;
   padding: 0;

@@ -1,7 +1,6 @@
 import {Component, DestroyRef} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {DynamicDialogRef} from "primeng/dynamicdialog";
-import {MessageService} from "primeng/api";
 import {DialogModule} from "primeng/dialog";
 import {DropdownModule} from "primeng/dropdown";
 import {InputNumberModule} from "primeng/inputnumber";
@@ -19,7 +18,6 @@ import {takeUntilDestroyed} from "@angular/core/rxjs-interop";
   templateUrl: './get-quote-modal.component.html',
   standalone: true,
   styleUrl: './get-quote-modal.component.scss',
-  providers: [MessageService]
 })
 export class GetQuoteModalComponent {
   display = true;

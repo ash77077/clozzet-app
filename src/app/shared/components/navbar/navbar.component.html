@@ -1,0 +1,153 @@
+<nav class="main-navbar" [ngClass]="{ 'scrolled': isScrolled(), 'mobile-menu-open': mobileMenuOpen() }">
+  <div class="navbar-container">
+    <div class="navbar-content">
+      <!-- Logo Section -->
+      <div class="navbar-brand">
+        <a routerLink="/landing2" (click)="closeMobileMenu()">
+          <img 
+            [class.mobile-logo]="isMobile()" 
+            src="assets/images/logo-black.png" 
+            alt="Clozzet - B2B Textile Solutions"
+            class="brand-logo">
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      @if (!isMobile()) {
+      <div class="navbar-nav desktop-nav">
+        <div class="nav-links">
+          @for (item of navigationItems; track item.route) {
+          <a 
+            [routerLink]="item.route"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: item.route === '/landing2' }"
+            class="nav-link"
+            [title]="item.description">
+            <i class="pi {{ item.icon }}"></i>
+            <span>{{ item.label }}</span>
+          </a>
+          }
+        </div>
+      </div>
+      }
+
+      <!-- Desktop Actions -->
+      @if (!isMobile()) {
+      <div class="navbar-actions desktop-actions">
+        <p-button 
+          label="Get Quote" 
+          styleClass="quote-btn" 
+          (click)="navigateToQuote()"
+          icon="pi pi-plus">
+        </p-button>
+        <p-button 
+          label="Login" 
+          styleClass="login-btn" 
+          text
+          (click)="navigateToAuth()"
+          icon="pi pi-user">
+        </p-button>
+      </div>
+      }
+
+      <!-- Mobile Actions -->
+      @if (isMobile()) {
+      <div class="navbar-actions mobile-actions">
+        <p-button 
+          icon="pi pi-plus" 
+          styleClass="mobile-quote-btn" 
+          (click)="navigateToQuote()"
+          [text]="true"
+          [rounded]="true">
+        </p-button>
+        <p-button 
+          [icon]="mobileMenuOpen() ? 'pi pi-times' : 'pi pi-bars'" 
+          styleClass="mobile-menu-toggle" 
+          (click)="toggleMobileMenu()"
+          [text]="true"
+          [rounded]="true">
+        </p-button>
+      </div>
+      }
+    </div>
+
+    <!-- Mobile Navigation Menu -->
+    @if (isMobile() && mobileMenuOpen()) {
+    <div class="mobile-nav">
+      <div class="mobile-nav-content">
+        <!-- Navigation Links -->
+        <div class="mobile-nav-links">
+          @for (item of navigationItems; track item.route) {
+          <a 
+            [routerLink]="item.route"
+            class="mobile-nav-link"
+            [ngClass]="{ 'active': isActiveRoute(item.route) }"
+            (click)="closeMobileMenu()">
+            <div class="mobile-nav-link-content">
+              <i class="pi {{ item.icon }}"></i>
+              <div class="mobile-nav-text">
+                <span class="mobile-nav-label">{{ item.label }}</span>
+                <span class="mobile-nav-description">{{ item.description }}</span>
+              </div>
+            </div>
+          </a>
+          }
+        </div>
+
+        <!-- Mobile Actions -->
+        <div class="mobile-nav-actions">
+          <p-button 
+            label="Get Custom Quote" 
+            styleClass="mobile-cta-primary" 
+            (click)="navigateToQuote()"
+            icon="pi pi-plus"
+            [fluid]="true">
+          </p-button>
+          <p-button 
+            label="Login to Account" 
+            styleClass="mobile-cta-secondary" 
+            (click)="navigateToAuth()"
+            icon="pi pi-user"
+            [text]="true"
+            [fluid]="true">
+          </p-button>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="mobile-nav-footer">
+          <div class="mobile-contact-info">
+            <div class="contact-item">
+              <i class="pi pi-phone"></i>
+              <span>+1 (555) 123-4567</span>
+            </div>
+            <div class="contact-item">
+              <i class="pi pi-envelope"></i>
+              <span>sales&#64;clozzet.com</span>
+            </div>
+          </div>
+          
+          <div class="mobile-social-links">
+            <a href="https://www.facebook.com/share/1Yf5W7YxST/?mibextid=wwXIfr" target="_blank">
+              <i class="pi pi-facebook"></i>
+            </a>
+            <a href="https://www.linkedin.com/company/clozzet1/" target="_blank">
+              <i class="pi pi-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/clozzet.corp?igsh=MXByeDltZTVyNDMwZQ==" target="_blank">
+              <i class="pi pi-instagram"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  @if (isMobile() && mobileMenuOpen()) {
+  <div 
+    class="mobile-menu-overlay" 
+    (click)="closeMobileMenu()">
+  </div>
+  }
+</nav>

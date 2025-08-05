@@ -1,0 +1,317 @@
+<app-navbar></app-navbar>
+
+<!-- Hero Section -->
+<section id="home" class="hero-section">
+  <div class="hero-carousel-container">
+    <p-carousel
+      [value]="heroSlides"
+      [showNavigators]="true"
+      [numVisible]="1"
+      [numScroll]="1"
+      [circular]="true"
+      [autoplayInterval]="8000"
+      styleClass="hero-carousel">
+      <ng-template let-slide #item>
+        <div class="hero-slide">
+          <div class="hero-background">
+            <img [src]="slide.image" [alt]="slide.title" class="hero-bg-image">
+            <div class="hero-overlay"></div>
+          </div>
+          
+          <div class="hero-content">
+            <div class="container">
+              <div class="hero-text">
+                <span class="hero-subtitle">{{ slide.subtitle }}</span>
+                <h1 class="hero-title">{{ slide.title }}</h1>
+                <p class="hero-description">{{ slide.description }}</p>
+                
+                <div class="hero-actions">
+                  <p-button [label]="slide.cta" styleClass="hero-cta-primary" (click)="openQuoteDialog()"></p-button>
+                  <p-button label="View Products" styleClass="hero-cta-secondary" (click)="navigateToProducts()"></p-button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </p-carousel>
+  </div>
+  
+  <!-- Stats Bar -->
+  <div class="stats-bar">
+    <div class="container">
+      <div class="stats-grid">
+        @for (stat of stats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-number">{{ stat.number }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Branded Products Section -->
+<section id="products" class="products-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Corporate Branded Apparel</h2>
+      <p>Professional clothing solutions with your company branding</p>
+    </div>
+    
+    <div class="products-grid">
+      @for (product of brandedProducts; track product.name) {
+        <div class="product-card" (click)="onProductClick(product)">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name">
+            <div class="product-overlay">
+              <p-button label="Get Quote" styleClass="quote-btn" icon="pi pi-plus"></p-button>
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+            
+            <div class="product-features">
+              @for (feature of product.features; track feature) {
+                <span class="feature-tag">{{ feature }}</span>
+              }
+            </div>
+            
+            <div class="product-details">
+              <div class="min-order">Min: {{ product.minOrder }}</div>
+              <div class="price">{{ product.price }}</div>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Company Benefits Section -->
+<section id="benefits" class="benefits-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Why Companies Choose Clozzet</h2>
+      <p>Professional textile solutions designed for business success</p>
+    </div>
+    
+    <div class="benefits-grid">
+      @for (benefit of companyBenefits; track benefit.title) {
+        <div class="benefit-card">
+          <div class="benefit-icon">
+            <i class="pi {{ benefit.icon }}"></i>
+          </div>
+          <div class="benefit-content">
+            <h3>{{ benefit.title }}</h3>
+            <p>{{ benefit.description }}</p>
+            <div class="benefit-highlight">{{ benefit.highlight }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section id="testimonials" class="testimonials-section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Trusted by Leading Companies</h2>
+      <p>See what our B2B clients say about our services</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      @for (testimonial of clientTestimonials; track testimonial.company) {
+        <div class="testimonial-card">
+          <div class="testimonial-header">
+            <div class="company-info">
+              <div class="company-logo">
+                <img [src]="testimonial.logo" [alt]="testimonial.company" onerror="this.style.display='none'">
+              </div>
+              <div class="company-name">{{ testimonial.company }}</div>
+            </div>
+            <div class="rating">
+              @for (star of [1,2,3,4,5]; track star) {
+                <i class="pi pi-star-fill" [class.active]="star <= testimonial.rating"></i>
+              }
+            </div>
+          </div>
+          
+          <div class="testimonial-content">
+            <p>"{{ testimonial.testimonial }}"</p>
+          </div>
+          
+          <div class="testimonial-footer">
+            <div class="author-info">
+              <div class="author-avatar">{{ testimonial.avatar }}</div>
+              <div class="author-details">
+                <div class="author-name">{{ testimonial.author }}</div>
+                <div class="author-position">{{ testimonial.position }}</div>
+              </div>
+            </div>
+            <div class="order-size">{{ testimonial.orderSize }}</div>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-content">
+      <h2>Ready to Brand Your Business?</h2>
+      <p>Get a custom quote for your corporate apparel needs. Our team will help you create the perfect branded clothing solution.</p>
+      
+      <div class="cta-actions">
+        <p-button label="Get Custom Quote" styleClass="cta-primary" (click)="openQuoteDialog()"></p-button>
+        <p-button label="Download Catalog" styleClass="cta-secondary" icon="pi pi-download" (click)="downloadCatalog()"></p-button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="main-footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-logo">
+        <img src="assets/images/logo-black.png" alt="Clozzet Logo">
+      </div>
+      
+      <div class="footer-info">
+        <p>&copy;  Clozzet. Professional B2B Textile Solutions.</p>
+        <div class="social-links">
+          <a href="https://www.facebook.com/share/1Yf5W7YxST/?mibextid=wwXIfr" target="_blank">
+            <i class="pi pi-facebook"></i>
+          </a>
+          <a href="https://www.linkedin.com/company/clozzet1/" target="_blank">
+            <i class="pi pi-linkedin"></i>
+          </a>
+          <a href="https://www.instagram.com/clozzet.corp?igsh=MXByeDltZTVyNDMwZQ==" target="_blank">
+            <i class="pi pi-instagram"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Quote Dialog -->
+<p-dialog
+  header="Get Custom Quote"
+  [(visible)]="showQuoteDialog"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+  [style]="{ width: isMobile() ? '95vw' : '600px' }"
+  (onHide)="closeQuoteDialog()">
+  
+  <form [formGroup]="quoteForm" (ngSubmit)="onSubmitQuote()" class="quote-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="companyName">Company Name *</label>
+        <input
+          pInputText
+          id="companyName"
+          formControlName="companyName"
+          placeholder="Your company name">
+        @if (quoteForm.get('companyName')?.invalid && quoteForm.get('companyName')?.touched) {
+          <small class="error-message">Company name is required</small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="contactName">Contact Name *</label>
+        <input
+          pInputText
+          id="contactName"
+          formControlName="contactName"
+          placeholder="Your full name">
+        @if (quoteForm.get('contactName')?.invalid && quoteForm.get('contactName')?.touched) {
+          <small class="error-message">Contact name is required</small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          placeholder="your@company.com">
+        @if (quoteForm.get('email')?.invalid && quoteForm.get('email')?.touched) {
+          <small class="error-message">Valid email is required</small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone *</label>
+        <input
+          pInputText
+          id="phone"
+          formControlName="phone"
+          placeholder="+1 (555) 123-4567">
+        @if (quoteForm.get('phone')?.invalid && quoteForm.get('phone')?.touched) {
+          <small class="error-message">Valid phone number is required</small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="productType">Product Type *</label>
+        <input
+          pInputText
+          id="productType"
+          formControlName="productType"
+          placeholder="e.g., Polo Shirts, T-Shirts, Hoodies">
+        @if (quoteForm.get('productType')?.invalid && quoteForm.get('productType')?.touched) {
+          <small class="error-message">Product type is required</small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="quantity">Quantity *</label>
+        <input
+          pInputText
+          id="quantity"
+          formControlName="quantity"
+          placeholder="Number of pieces needed"
+          type="number">
+        @if (quoteForm.get('quantity')?.invalid && quoteForm.get('quantity')?.touched) {
+          <small class="error-message">Quantity is required</small>
+        }
+      </div>
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="message">Additional Details</label>
+      <textarea
+        pInputTextarea
+        id="message"
+        formControlName="message"
+        placeholder="Tell us about your branding requirements, colors, logo details, timeline, etc."
+        rows="4">
+      </textarea>
+    </div>
+    
+    <div class="form-actions">
+      <p-button
+        label="Cancel"
+        styleClass="secondary-btn"
+        type="button"
+        (click)="closeQuoteDialog()">
+      </p-button>
+      <p-button
+        label="Submit Quote Request"
+        styleClass="primary-btn"
+        type="submit"
+        [disabled]="quoteForm.invalid">
+      </p-button>
+    </div>
+  </form>
+</p-dialog>

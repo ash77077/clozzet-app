@@ -1,0 +1,386 @@
+<app-navbar></app-navbar>
+
+<div class="products-page">
+  <!-- Hero Section -->
+  <section class="products-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Our Product Catalog</h1>
+        <p>Discover our comprehensive range of high-quality B2B textile solutions</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="number">500+</span>
+            <span class="label">Products Available</span>
+          </div>
+          <div class="stat">
+            <span class="number">25+</span>
+            <span class="label">Customization Options</span>
+          </div>
+          <div class="stat">
+            <span class="number">48hr</span>
+            <span class="label">Quote Turnaround</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Category Navigation -->
+  <section class="category-nav">
+    <div class="container">
+      <div class="category-buttons">
+        <button 
+          class="category-btn"
+          [ngClass]="{ 'active': activeCategory() === 'all' }"
+          (click)="setActiveCategory('all')">
+          <i class="pi pi-th-large"></i>
+          <span>All Products</span>
+        </button>
+        
+        @for (category of productCategories; track category.id) {
+        <button 
+          class="category-btn"
+          [ngClass]="{ 'active': activeCategory() === category.id }"
+          (click)="setActiveCategory(category.id)">
+          <i class="pi {{ category.icon }}"></i>
+          <span>{{ category.name }}</span>
+        </button>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Products Section (shown when 'all' is selected) -->
+  @if (activeCategory() === 'all') {
+  <section class="popular-products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Popular Products</h2>
+        <p>Our most requested items by B2B clients</p>
+      </div>
+      
+      <div class="products-grid">
+        @for (product of popularProducts(); track product.id) {
+        <div class="product-card featured">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name" onerror="this.src='assets/images/pic01.png'">
+            <div class="product-badges">
+              <span class="badge popular">Popular</span>
+              @if (product.new) {
+              <span class="badge new">New</span>
+              }
+            </div>
+          </div>
+          
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+            
+            <div class="product-details">
+              <div class="detail-item">
+                <i class="pi pi-shopping-cart"></i>
+                <span>Min Order: {{ product.minOrder }} pieces</span>
+              </div>
+              <div class="detail-item">
+                <i class="pi pi-clock"></i>
+                <span>{{ product.leadTime }}</span>
+              </div>
+              <div class="detail-item">
+                <i class="pi pi-dollar"></i>
+                <span>{{ product.priceRange }}</span>
+              </div>
+            </div>
+            
+            <div class="product-features">
+              @for (feature of product.features.slice(0, 3); track feature) {
+              <span class="feature-tag">
+                {{ feature }}
+              </span>
+              }
+            </div>
+            
+            <div class="product-actions">
+              <p-button 
+                label="Get Quote" 
+                styleClass="quote-btn-primary" 
+                (click)="openQuoteDialog(product)"
+                icon="pi pi-plus">
+              </p-button>
+              <p-button 
+                label="View Details" 
+                styleClass="details-btn" 
+                text
+                icon="pi pi-eye">
+              </p-button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+  }
+
+  <!-- Products Grid -->
+  <section class="products-section">
+    <div class="container">
+      <!-- Category Description -->
+      @if (activeCategory() !== 'all' && activeCategoryInfo()) {
+      <div class="category-description">
+        <div class="category-info">
+          <h2>{{ activeCategoryInfo()?.name }}</h2>
+          <p>{{ activeCategoryInfo()?.description }}</p>
+        </div>
+      </div>
+      }
+
+      <!-- Products Grid -->
+      <div class="products-grid">
+        @for (product of filteredProducts(); track product.id) {
+        <div class="product-card">
+          <div class="product-image">
+            <img [src]="product.image" [alt]="product.name" onerror="this.src='assets/images/pic01.png'">
+            <div class="product-overlay">
+              <p-button 
+                label="Quick Quote" 
+                styleClass="overlay-btn" 
+                (click)="openQuoteDialog(product)"
+                icon="pi pi-plus">
+              </p-button>
+            </div>
+            @if (product.popular || product.new) {
+            <div class="product-badges">
+              @if (product.popular) {
+              <span class="badge popular">Popular</span>
+              }
+              @if (product.new) {
+              <span class="badge new">New</span>
+              }
+            </div>
+            }
+          </div>
+          
+          <div class="product-info">
+            <h3>{{ product.name }}</h3>
+            <p class="product-description">{{ product.description }}</p>
+            
+            <div class="product-specs">
+              <div class="spec-grid">
+                <div class="spec-item">
+                  <strong>Materials:</strong>
+                  <span>{{ product.materials.slice(0, 2).join(', ') }}</span>
+                </div>
+                <div class="spec-item">
+                  <strong>Colors:</strong>
+                  <span>{{ product.colors.length }}+ options</span>
+                </div>
+                <div class="spec-item">
+                  <strong>Sizes:</strong>
+                  <span>{{ product.sizes.length }} sizes</span>
+                </div>
+                <div class="spec-item">
+                  <strong>Min Order:</strong>
+                  <span>{{ product.minOrder }} pieces</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="product-pricing">
+              <div class="price-range">{{ product.priceRange }}</div>
+              <div class="lead-time">{{ product.leadTime }}</div>
+            </div>
+            
+            <div class="product-customization">
+              <h4>Customization Options:</h4>
+              <div class="customization-tags">
+                @for (option of product.customization.slice(0, 3); track option) {
+                <span class="custom-tag">
+                  {{ option }}
+                </span>
+                }
+                @if (product.customization.length > 3) {
+                <span class="more-tag">
+                  +{{ product.customization.length - 3 }} more
+                </span>
+                }
+              </div>
+            </div>
+            
+            <div class="product-actions">
+              <p-button 
+                label="Get Custom Quote" 
+                styleClass="quote-btn-primary" 
+                (click)="openQuoteDialog(product)"
+                [fluid]="true"
+                icon="pi pi-plus">
+              </p-button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Need Something Custom?</h2>
+        <p>Can't find exactly what you're looking for? Our team can create custom solutions tailored to your specific needs.</p>
+        <div class="cta-actions">
+          <p-button 
+            label="Request Custom Quote" 
+            styleClass="cta-primary" 
+            (click)="openQuoteDialog()"
+            icon="pi pi-star">
+          </p-button>
+          <p-button 
+            label="Contact Our Team" 
+            styleClass="cta-secondary" 
+            icon="pi pi-phone">
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Quote Dialog -->
+<p-dialog
+  header="Request Product Quote"
+  [(visible)]="showQuoteDialog"
+  [modal]="true"
+  [closable]="true"
+  [dismissableMask]="true"
+  [style]="{ width: '90vw', maxWidth: '700px' }"
+  (onHide)="closeQuoteDialog()">
+  
+  @if (selectedProduct()) {
+  <div class="quote-dialog-content">
+    <div class="selected-product-info">
+      <div class="product-summary">
+        <img [src]="selectedProduct()!.image" [alt]="selectedProduct()!.name" onerror="this.src='assets/images/pic01.png'">
+        <div class="product-details">
+          <h4>{{ selectedProduct()!.name }}</h4>
+          <p>{{ selectedProduct()!.description }}</p>
+          <div class="price-info">
+            <span class="price">{{ selectedProduct()!.priceRange }}</span>
+            <span class="min-order">Min: {{ selectedProduct()!.minOrder }} pieces</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+  
+  <form [formGroup]="quoteForm" (ngSubmit)="onSubmitQuote()" class="quote-form">
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="companyName">Company Name *</label>
+        <input
+          pInputText
+          id="companyName"
+          formControlName="companyName"
+          placeholder="Your company name">
+        @if (quoteForm.get('companyName')?.invalid && quoteForm.get('companyName')?.touched) {
+        <small class="error-message">
+          Company name is required
+        </small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="contactName">Contact Name *</label>
+        <input
+          pInputText
+          id="contactName"
+          formControlName="contactName"
+          placeholder="Your full name">
+        @if (quoteForm.get('contactName')?.invalid && quoteForm.get('contactName')?.touched) {
+        <small class="error-message">
+          Contact name is required
+        </small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input
+          pInputText
+          id="email"
+          formControlName="email"
+          placeholder="your@company.com">
+        @if (quoteForm.get('email')?.invalid && quoteForm.get('email')?.touched) {
+        <small class="error-message">
+          Valid email is required
+        </small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="phone">Phone *</label>
+        <input
+          pInputText
+          id="phone"
+          formControlName="phone"
+          placeholder="+1 (555) 123-4567">
+        @if (quoteForm.get('phone')?.invalid && quoteForm.get('phone')?.touched) {
+        <small class="error-message">
+          Valid phone number is required
+        </small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="quantity">Quantity *</label>
+        <input
+          pInputText
+          id="quantity"
+          formControlName="quantity"
+          placeholder="Number of pieces"
+          type="number">
+        @if (quoteForm.get('quantity')?.invalid && quoteForm.get('quantity')?.touched) {
+        <small class="error-message">
+          Quantity is required
+        </small>
+        }
+      </div>
+      
+      <div class="form-group">
+        <label for="customization">Customization Needed</label>
+        <input
+          pInputText
+          id="customization"
+          formControlName="customization"
+          placeholder="e.g., Logo embroidery, specific colors">
+      </div>
+    </div>
+    
+    <div class="form-group full-width">
+      <label for="message">Additional Requirements</label>
+      <textarea
+        pInputTextarea
+        id="message"
+        formControlName="message"
+        placeholder="Tell us about your specific requirements, timeline, budget constraints, etc."
+        rows="4">
+      </textarea>
+    </div>
+    
+    <div class="form-actions">
+      <p-button
+        label="Cancel"
+        styleClass="secondary-btn"
+        type="button"
+        (click)="closeQuoteDialog()">
+      </p-button>
+      <p-button
+        label="Submit Quote Request"
+        styleClass="primary-btn"
+        type="submit"
+        [disabled]="quoteForm.invalid">
+      </p-button>
+    </div>
+  </form>
+</p-dialog>

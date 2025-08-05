@@ -8,7 +8,6 @@ import {FloatLabelModule} from "primeng/floatlabel";
 import {FadeInOnScrollDirective} from "@shared/directives/fade-in-on-scroll.directive";
 import {TextareaModule} from "primeng/textarea";
 import {DialogService} from "primeng/dynamicdialog";
-import {GetQuoteModalComponent} from "@shared/components/get-quote-modal/get-quote-modal.component";
 import {Dialog} from "primeng/dialog";
 import {MenuItem} from "primeng/api";
 import {RouterLink} from "@angular/router";

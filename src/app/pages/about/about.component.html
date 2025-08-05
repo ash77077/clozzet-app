@@ -1,0 +1,283 @@
+<app-navbar></app-navbar>
+
+<div class="about-page">
+  <!-- Hero Section -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>About Clozzet</h1>
+        <p class="hero-subtitle">Your Trusted Partner in B2B Textile Solutions</p>
+        <p class="hero-description">
+          Since 2018, we've been dedicated to providing high-quality, customizable textile products 
+          that help businesses build their brand identity and connect with their teams.
+        </p>
+        
+        <div class="hero-stats">
+          @for (stat of companyStats; track stat.label) {
+          <div class="stat-item">
+            <span class="stat-number">{{ stat.number }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section class="mission-vision">
+    <div class="container">
+      <div class="mission-vision-grid">
+        <div class="mission-card">
+          <div class="card-icon">
+            <i class="pi pi-target"></i>
+          </div>
+          <h3>Our Mission</h3>
+          <p>
+            To empower businesses to express their unique identity through sustainable, high-quality branded 
+            apparel. We are committed to delivering innovative textile solutions that blend creativity, 
+            functionality, and environmental responsibility.
+          </p>
+        </div>
+        
+        <div class="vision-card">
+          <div class="card-icon">
+            <i class="pi pi-eye"></i>
+          </div>
+          <h3>Our Vision</h3>
+          <p>
+            To be the leading B2B textile partner, recognized for our commitment to quality, innovation, 
+            and customer success. We envision a future where every business can showcase their brand 
+            with confidence through our exceptional products.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Story Section -->
+  <section class="our-story">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Story</h2>
+        <p>From a small startup to a trusted B2B textile partner</p>
+      </div>
+      
+      <div class="story-content">
+        <div class="story-text">
+          <p>
+            Clozzet was born from a simple observation: businesses needed a reliable partner who could 
+            deliver high-quality, branded apparel that truly represented their values and identity. 
+            Founded in 2018 by industry veterans with a combined 40+ years of experience, we set out 
+            to revolutionize the B2B textile industry.
+          </p>
+          
+          <p>
+            What started as a small operation with a handful of local clients has grown into a 
+            comprehensive textile solutions provider serving over 1,000 businesses nationwide. 
+            Our success is built on three core principles: unwavering quality, exceptional customer 
+            service, and innovative solutions tailored to each client's unique needs.
+          </p>
+          
+          <p>
+            Today, we're proud to be a trusted partner for companies ranging from startups to 
+            Fortune 500 enterprises, helping them build stronger teams and brands through 
+            professionally crafted apparel.
+          </p>
+        </div>
+        
+        <div class="story-image">
+          <img src="assets/images/about/company-story.jpg" alt="Clozzet Company Story" 
+               onerror="this.src='assets/images/banner-image.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Company Values Section -->
+  <section class="company-values">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Values</h2>
+        <p>The principles that guide everything we do</p>
+      </div>
+      
+      <div class="values-grid">
+        @for (value of companyValues; track value.title) {
+        <div class="value-card">
+          <div class="value-icon">
+            <i class="pi {{ value.icon }}"></i>
+          </div>
+          <div>
+            <h3>{{ value.title }}</h3>
+            <p>{{ value.description }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section class="company-timeline">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Journey</h2>
+        <p>Key milestones in our company's growth</p>
+      </div>
+      
+      <div class="timeline-container">
+        <div class="timeline">
+          @for (milestone of companyMilestones; track milestone.year; let i = $index) {
+          <div class="timeline-item" 
+               [class.left]="i % 2 === 0" 
+               [class.right]="i % 2 === 1">
+            <div class="timeline-content">
+              <div class="timeline-icon">
+                <i class="pi {{ milestone.icon }}"></i>
+              </div>
+              <div class="timeline-info">
+                <span class="timeline-year">{{ milestone.year }}</span>
+                <h4>{{ milestone.title }}</h4>
+                <p>{{ milestone.description }}</p>
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="our-team">
+    <div class="container">
+      <div class="section-header">
+        <h2>Meet Our Team</h2>
+        <p>The dedicated professionals behind Clozzet's success</p>
+      </div>
+      
+      <div class="team-grid">
+        @for (member of teamMembers; track member.name) {
+        <div class="team-card">
+          <div class="member-image">
+            <img [src]="member.image" [alt]="member.name" 
+                 onerror="this.src='assets/images/no-image.png'">
+            <div class="member-overlay">
+              @if (member.linkedin) {
+              <a [href]="member.linkedin" target="_blank" class="linkedin-link">
+                <i class="pi pi-linkedin"></i>
+              </a>
+              }
+            </div>
+          </div>
+          <div class="member-info">
+            <h3>{{ member.name }}</h3>
+            <p class="member-position">{{ member.position }}</p>
+            <p class="member-bio">{{ member.bio }}</p>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="certifications">
+    <div class="container">
+      <div class="section-header">
+        <h2>Certifications & Standards</h2>
+        <p>Our commitment to quality and ethical practices</p>
+      </div>
+      
+      <div class="certifications-grid">
+        @for (cert of certifications; track cert.name) {
+        <div class="certification-card">
+          <div class="cert-icon">
+            <i class="pi pi-verified"></i>
+          </div>
+          <h4>{{ cert.name }}</h4>
+          <p>{{ cert.description }}</p>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us Section -->
+  <section class="why-choose-us">
+    <div class="container">
+      <div class="why-choose-content">
+        <div class="why-choose-text">
+          <h2>Why Businesses Choose Clozzet</h2>
+          <div class="reasons-list">
+            <div class="reason-item">
+              <i class="pi pi-check-circle"></i>
+              <div>
+                <h4>Proven Track Record</h4>
+                <p>Over 6 years of experience serving 1,000+ satisfied business clients</p>
+              </div>
+            </div>
+            
+            <div class="reason-item">
+              <i class="pi pi-check-circle"></i>
+              <div>
+                <h4>End-to-End Solutions</h4>
+                <p>From design consultation to final delivery, we handle every aspect of your project</p>
+              </div>
+            </div>
+            
+            <div class="reason-item">
+              <i class="pi pi-check-circle"></i>
+              <div>
+                <h4>Competitive Pricing</h4>
+                <p>Volume discounts and transparent pricing with no hidden fees</p>
+              </div>
+            </div>
+            
+            <div class="reason-item">
+              <i class="pi pi-check-circle"></i>
+              <div>
+                <h4>Fast Turnaround</h4>
+                <p>Industry-leading delivery times without compromising on quality</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="why-choose-image">
+          <img src="assets/images/about/why-choose-us.jpg" alt="Why Choose Clozzet" 
+               onerror="this.src='assets/images/banner-image1.jpg'">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Partner with Us?</h2>
+        <p>
+          Join over 1,000 businesses who trust Clozzet for their textile needs. 
+          Let's discuss how we can help elevate your brand.
+        </p>
+        
+        <div class="cta-actions">
+          <p-button 
+            label="Get Started Today" 
+            styleClass="cta-primary" 
+            (click)="navigateToContact()"
+            icon="pi pi-arrow-right">
+          </p-button>
+          <p-button 
+            label="View Our Products" 
+            styleClass="cta-secondary" 
+            (click)="navigateToProducts()"
+            icon="pi pi-shopping-bag">
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

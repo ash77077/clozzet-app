@@ -1,0 +1,289 @@
+<app-navbar></app-navbar>
+
+<div class="services-page">
+  <!-- Hero Section -->
+  <section class="services-hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>B2B Textile Services</h1>
+        <p class="hero-subtitle">Comprehensive Solutions for Your Corporate Apparel Needs</p>
+        <p class="hero-description">
+          From custom branding to bulk manufacturing, we provide end-to-end textile services 
+          designed specifically for businesses. Let us handle your corporate apparel while you focus on your core business.
+        </p>
+        
+        <div class="hero-actions">
+          <p-button 
+            label="Get Custom Quote" 
+            styleClass="hero-cta-primary" 
+            (click)="requestQuote()"
+            icon="pi pi-plus">
+          </p-button>
+          <p-button 
+            label="View Our Products" 
+            styleClass="hero-cta-secondary" 
+            (click)="navigateToProducts()"
+            icon="pi pi-shopping-bag">
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Services</h2>
+        <p>Comprehensive textile solutions tailored for B2B success</p>
+      </div>
+      
+      <div class="services-grid">
+        @for (service of services; track service.id) {
+        <div class="service-card">
+          <div class="service-header">
+            <div class="service-icon">
+              <i class="pi {{ service.icon }}"></i>
+            </div>
+            <div class="service-title-section">
+              <h3>{{ service.title }}</h3>
+              <p class="service-description">{{ service.description }}</p>
+            </div>
+          </div>
+          
+          <div class="service-content">
+            <div class="service-features">
+              <h4>Features</h4>
+              <ul>
+                @for (feature of service.features; track feature) {
+                <li>
+                  <i class="pi pi-check"></i>
+                  <span>{{ feature }}</span>
+                </li>
+                }
+              </ul>
+            </div>
+            
+            <div class="service-benefits">
+              <h4>Benefits</h4>
+              <ul>
+                @for (benefit of service.benefits; track benefit) {
+                <li>
+                  <i class="pi pi-star"></i>
+                  <span>{{ benefit }}</span>
+                </li>
+                }
+              </ul>
+            </div>
+            
+            <div class="service-details">
+              <div class="service-pricing">
+                <div class="detail-item">
+                  <i class="pi pi-dollar"></i>
+                  <span>{{ service.pricing }}</span>
+                </div>
+              </div>
+              
+              <div class="service-turnaround">
+                <div class="detail-item">
+                  <i class="pi pi-clock"></i>
+                  <span>{{ service.turnaround }}</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="service-actions">
+              <p-button 
+                label="Get Quote" 
+                styleClass="service-quote-btn" 
+                (click)="requestQuote()"
+                [fluid]="true"
+                icon="pi pi-arrow-right">
+              </p-button>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Workflow Process -->
+  <section class="workflow-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Process</h2>
+        <p>Simple, transparent workflow designed for business efficiency</p>
+      </div>
+      
+      <div class="workflow-timeline">
+        @for (step of workflowSteps; track step.step; let i = $index) {
+        <div class="workflow-step">
+          @if (i < workflowSteps.length - 1) {
+          <div class="step-connector"></div>
+          }
+          
+          <div class="step-content">
+            <div class="step-icon">
+              <i class="pi {{ step.icon }}"></i>
+              <span class="step-number">{{ step.step }}</span>
+            </div>
+            
+            <div class="step-info">
+              <h4>{{ step.title }}</h4>
+              <p>{{ step.description }}</p>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Service Guarantees -->
+  <section class="guarantees-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Our Guarantees</h2>
+        <p>Commitments that ensure your complete satisfaction</p>
+      </div>
+      
+      <div class="guarantees-grid">
+        <div class="guarantee-card">
+          <div class="guarantee-icon">
+            <i class="pi pi-shield"></i>
+          </div>
+          <h3>Quality Guarantee</h3>
+          <p>100% satisfaction guarantee on all products. If you're not completely satisfied, we'll make it right at no additional cost.</p>
+        </div>
+        
+        <div class="guarantee-card">
+          <div class="guarantee-icon">
+            <i class="pi pi-clock"></i>
+          </div>
+          <h3>On-Time Delivery</h3>
+          <p>We guarantee delivery within the agreed timeframe. Late deliveries receive automatic discounts on your next order.</p>
+        </div>
+        
+        <div class="guarantee-card">
+          <div class="guarantee-icon">
+            <i class="pi pi-dollar"></i>
+          </div>
+          <h3>Price Match Promise</h3>
+          <p>Find a better price elsewhere? We'll match it and beat it by 5% for comparable quality and service levels.</p>
+        </div>
+        
+        <div class="guarantee-card">
+          <div class="guarantee-icon">
+            <i class="pi pi-headphones"></i>
+          </div>
+          <h3>24/7 Support</h3>
+          <p>Dedicated account management and customer support available around the clock for all your business needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries We Serve -->
+  <section class="industries-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Industries We Serve</h2>
+        <p>Specialized solutions for diverse business sectors</p>
+      </div>
+      
+      <div class="industries-grid">
+        <div class="industry-card">
+          <i class="pi pi-building"></i>
+          <h4>Corporate</h4>
+          <p>Professional attire for offices, meetings, and corporate events</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-wrench"></i>
+          <h4>Manufacturing</h4>
+          <p>Durable workwear and safety apparel for industrial environments</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-heart"></i>
+          <h4>Healthcare</h4>
+          <p>Medical scrubs, lab coats, and healthcare professional uniforms</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-car"></i>
+          <h4>Automotive</h4>
+          <p>Mechanic uniforms, branded workwear, and dealership apparel</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-home"></i>
+          <h4>Hospitality</h4>
+          <p>Restaurant uniforms, hotel staff attire, and service industry wear</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-graduation-cap"></i>
+          <h4>Education</h4>
+          <p>School uniforms, staff apparel, and educational institution branding</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-shopping-cart"></i>
+          <h4>Retail</h4>
+          <p>Store employee uniforms, promotional wear, and customer-facing attire</p>
+        </div>
+        
+        <div class="industry-card">
+          <i class="pi pi-users"></i>
+          <h4>Non-Profit</h4>
+          <p>Event shirts, volunteer apparel, and organizational merchandise</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <h2>Ready to Get Started?</h2>
+        <p>
+          Let our team of textile experts help you create the perfect corporate apparel solution. 
+          Get a free consultation and quote today.
+        </p>
+        
+        <div class="cta-stats">
+          <div class="stat-item">
+            <span class="stat-number">1000+</span>
+            <span class="stat-label">Happy Clients</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50K+</span>
+            <span class="stat-label">Items Delivered</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">24hr</span>
+            <span class="stat-label">Quote Response</span>
+          </div>
+        </div>
+        
+        <div class="cta-actions">
+          <p-button 
+            label="Start Your Project" 
+            styleClass="cta-primary" 
+            (click)="requestQuote()"
+            icon="pi pi-play">
+          </p-button>
+          <p-button 
+            label="Schedule Consultation" 
+            styleClass="cta-secondary" 
+            (click)="navigateToContact()"
+            icon="pi pi-calendar">
+          </p-button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
